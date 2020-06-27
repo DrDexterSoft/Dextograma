@@ -3,10 +3,9 @@
  import android.app.DatePickerDialog
  import android.content.Context
  import android.content.Intent
- import android.content.res.Configuration
- import android.content.res.Resources
  import android.os.Build
  import android.os.Bundle
+ import android.os.ResultReceiver
  import android.text.Editable
  import android.text.TextUtils
  import android.text.TextWatcher
@@ -15,8 +14,8 @@
  import android.view.MenuItem
  import android.view.View
  import android.view.ViewGroup
+ import android.view.inputmethod.InputMethodManager
  import android.widget.EditText
- import android.widget.Toast
  import androidx.annotation.RequiresApi
  import androidx.appcompat.app.AppCompatActivity
  import com.drdextersoft.app.myapplication.About
@@ -79,6 +78,7 @@
                  RB2.isChecked=true
                  Semanas.isEnabled=true
                  if (Semanas.text.isEmpty()){
+                     Semanas.requestFocus()
                      Semanas.requestFocus()
                  }
                  else {CalcularSemanas(P_Eco,Fecha1)}
