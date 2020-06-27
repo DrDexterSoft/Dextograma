@@ -79,6 +79,7 @@
                  Semanas.isEnabled=true
                  if (Semanas.text.isEmpty()){
                      Semanas.requestFocus()
+                     Semanas.requestFocus()
                  }
                  else {CalcularSemanas(P_Eco,Fecha1)}
                  CalculoSemanas.setText(CalculoSemanas.text)
