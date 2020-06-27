@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gestogram</string>
+    <string name="fum">LMP</string>
+    <string name="p_eco">First US</string>
+    <string name="semanas">Weeks</string>
+    <string name="calcular_para_fecha">Calculate for date:</string>
+    <string name="S38">Week 38</string>
+    <string name="S39">Week 39</string>
+    <string name="S40">Week 40</string>
+    <string name="S41">Week 41</string>
+    <string name="S42">Week 42</string>
+    <string name="Cumple">Turns </string>
+    <string name="FUM_Corregida">Corrected LMP: </string>
+    <string name="Edad_actual">Gestational age: </string>
+    <string name="CumpleSemanas">weeks: </string>
+    <string name="Hints">"Comments, greetings, suggestions, collaborations!"</string>
+    <string name="Enviar">Send email</string>
+    <string name="Salir">Close</string>
+    <string name="about">About...</string>
+    <string name="titulo">Gestogram and gestational calculator</string>
+    <string name="meses">months and</string>
+    <string name="dias">days</string>
+    <string name="mes">month and</string>
+    <string name="dia">day</string>
+    <string name="semcorto">weeks</string>
+</resources>

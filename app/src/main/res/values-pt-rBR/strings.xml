@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gestograma</string>
+    <string name="fum">DUM</string>
+    <string name="p_eco">Primeiro US</string>
+    <string name="semanas">Semanas</string>
+    <string name="calcular_para_fecha">Calcular para a data:</string>
+    <string name="S38">38 Semanas</string>
+    <string name="S39">39 Semanas</string>
+    <string name="S40">40 Semanas</string>
+    <string name="S41">41 Semanas</string>
+    <string name="S42">42 Semanas</string>
+    <string name="Cumple">Faz </string>
+    <string name="FUM_Corregida">DUM corrigida: </string>
+    <string name="Edad_actual">Idade gestacional: </string>
+    <string name="CumpleSemanas">semanas em: </string>
+    <string name="Hints">"Comentários, saudações, sugestões, colaborações!"</string>
+    <string name="Enviar">Enviar correio</string>
+    <string name="Salir">Saída</string>
+    <string name="about">Sobre...</string>
+    <string name="titulo">Gestograma e calculadora gestacional</string>
+    <string name="meses">meses e</string>
+    <string name="dias">dias</string>
+    <string name="mes">mes e</string>
+    <string name="dia">dia</string>
+    <string name="semcorto">sem</string>
+</resources>
