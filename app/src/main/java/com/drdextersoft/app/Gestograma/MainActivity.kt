@@ -5,7 +5,6 @@
  import android.content.Intent
  import android.os.Build
  import android.os.Bundle
- import android.os.ResultReceiver
  import android.text.Editable
  import android.text.TextUtils
  import android.text.TextWatcher
