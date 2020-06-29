@@ -23,7 +23,6 @@
  import java.text.SimpleDateFormat
  import java.util.*
 
-
  @Suppress("DEPRECATION")
  class MainActivity : AppCompatActivity() {
      @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)

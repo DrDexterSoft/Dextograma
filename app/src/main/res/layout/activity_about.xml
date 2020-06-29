@@ -7,10 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".About">
 
-    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".About">
@@ -112,5 +110,13 @@
             android:layout_marginTop="30dp"
             />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <Button
+            android:id="@+id/calificar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Calificar" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>
