@@ -1,12 +1,17 @@
 package com.drdextersoft.app.myapplication
 
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_about.*
+
 
 class About() : AppCompatActivity() {
 
@@ -22,14 +27,6 @@ class About() : AppCompatActivity() {
         actionBar.setLogo(R.mipmap.logo_foreground)
         actionBar.setDisplayUseLogoEnabled(true)
         button.setOnClickListener { finish() }
-        calificar.setOnClickListener{
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=com.drdextersoft.app.myapplication")
-                )
-            )
-        }
         Correo.setOnClickListener {
 
             val to = "drvictoroviedo@gmail.com"

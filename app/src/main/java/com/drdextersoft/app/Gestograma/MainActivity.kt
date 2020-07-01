@@ -2,9 +2,13 @@
 
  import android.app.DatePickerDialog
  import android.content.Context
+ import android.content.DialogInterface
  import android.content.Intent
+ import android.content.pm.PackageManager
+ import android.net.Uri
  import android.os.Build
  import android.os.Bundle
+ import android.provider.Settings.Global.putString
  import android.text.Editable
  import android.text.TextUtils
  import android.text.TextWatcher
@@ -15,6 +19,7 @@
  import android.view.ViewGroup
  import android.view.inputmethod.InputMethodManager
  import android.widget.EditText
+ import android.widget.ImageView
  import androidx.annotation.RequiresApi
  import androidx.appcompat.app.AppCompatActivity
  import com.drdextersoft.app.myapplication.About
@@ -37,6 +42,8 @@
          actionBar.setDisplayShowHomeEnabled(true)
          actionBar.setLogo(R.mipmap.logo_foreground)
          actionBar.setDisplayUseLogoEnabled(true)
+
+         mostrarValoracion()
 
          val metrics = DisplayMetrics()
          windowManager.defaultDisplay.getMetrics(metrics)
@@ -353,33 +360,69 @@
                  startActivity(acercade)
              }
           }
- //        if (Idioma!="") {
- //            setLocale(Idioma)
- //            val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
- //            with (sharedPref.edit()) {
- //                putString( "Idioma", Idioma)
- //                commit()
- //            }
- //       Toast.makeText(this, IdiomaName,Toast.LENGTH_SHORT).show()
- //        finish()}
+
          return super.onOptionsItemSelected(item)
      }
-
-//     fun setLocale(localeName: String) {
-//         val config = Configuration()
-//         val locale = Locale(localeName);
-//         config.locale =locale;
-//         resources.updateConfiguration(config, null)
- //        val refresh = Intent(this@MainActivity, MainActivity::class.java)
- //        startActivity(refresh)
- //        finish()
- //          }
 
      override fun onCreateOptionsMenu(menu: Menu): Boolean {
          // Inflate the menu to use in the action bar
          val inflater = menuInflater
          inflater.inflate(R.menu.toolbar_menu, menu)
          return super.onCreateOptionsMenu(menu)
+     }
+
+     fun mostrarValoracion(){
+         var preferencias = getSharedPreferences("contador", Context.MODE_PRIVATE)
+         //grabarPreferencias(1)
+         var contador=preferencias.getInt("contador", 1)
+         if (contador<10){
+             grabarPreferencias(contador+1)
+        }
+         else if (contador==10){
+             showRateDialog(this)
+         }
+     }
+
+     fun grabarPreferencias(valor:Int){
+         var preferencias = getSharedPreferences("contador", Context.MODE_PRIVATE)
+         val editor = preferencias.edit()
+         editor.putInt("contador", valor)
+         editor.commit()}
+
+     fun showRateDialog(context: Context?) {
+         val imagen = ImageView  (this);
+         imagen.setImageResource(R.drawable.estrellas)
+         val builder = android.app.AlertDialog.Builder(context)
+             .setTitle("Califica la aplicación!")
+             .setMessage("Esperamos tus 5 estrellas")
+             .setView(imagen)
+             .setPositiveButton("Calificar",
+                 DialogInterface.OnClickListener { dialog, which ->
+                     grabarPreferencias(20)
+                     if (context != null) {
+                         var link = "market://details?id="
+                         try {
+                             // play market available
+                             context.getPackageManager()
+                                 .getPackageInfo("com.Android.vending", 0)
+                             // not available
+                         } catch (e: PackageManager.NameNotFoundException) {
+                             e.printStackTrace()
+                             // should use browser
+                             link = "https://play.google.com/store/apps/details?id="
+                         }
+                         // starts external action
+                         context.startActivity(
+                             Intent(
+                                 Intent.ACTION_VIEW,
+                                 Uri.parse(link + context.getPackageName())
+                             )
+                         )
+                     }
+                 })
+             .setNegativeButton("nunca",DialogInterface.OnClickListener{dialog,which -> grabarPreferencias(20)})
+             .setNeutralButton("recordar mas tarde",DialogInterface.OnClickListener{dialog,which -> grabarPreferencias(1)})
+         builder.show()
      }
  }
 

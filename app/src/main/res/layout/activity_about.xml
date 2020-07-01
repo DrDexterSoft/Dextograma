@@ -110,13 +110,5 @@
             android:layout_marginTop="30dp"
             />
 
-        <Button
-            android:id="@+id/calificar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center_horizontal"
-            android:text="Calificar" />
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>
