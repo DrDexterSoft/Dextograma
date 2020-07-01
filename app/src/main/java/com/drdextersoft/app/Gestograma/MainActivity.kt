@@ -266,7 +266,7 @@
                 calendario.add(Calendar.DAY_OF_YEAR,+diaseco)
                 diasmenor= dia
                 mesesmenor= mes
-                anhosmenor= anho
+                anhosmenor= anho;
             }
 
          var diasmayor= ParaFecha.text.substring(0,2).toInt()
