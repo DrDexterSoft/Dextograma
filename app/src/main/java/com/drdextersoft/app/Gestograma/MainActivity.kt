@@ -56,20 +56,20 @@
              param.setMargins(50,0,0,0)
              pantalla.layoutParams = param}
 
-         FUM.setOnClickListener { v -> Fecha(v) }
-         P_Eco.setOnClickListener { v -> Fecha(v) }
-         ParaFecha.setOnClickListener { v -> Fecha(v) }
+         FUM.setOnClickListener { v -> fecha(v) }
+         P_Eco.setOnClickListener { v -> fecha(v) }
+         ParaFecha.setOnClickListener { v -> fecha(v) }
          Reset.setOnClickListener{
              val refresh = Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
              startActivity(refresh)}
-         val sdf = SimpleDateFormat("dd/MM/yyyy")
+         val sdf = SimpleDateFormat("dd/MM/yyyy",Locale.US)
          val currentDate = sdf.format(Date())
          ParaFecha.setText(currentDate)
 
         FUM.addTextChangedListener(object : TextWatcher {
              @RequiresApi(Build.VERSION_CODES.N)
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                 val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy").parse(FUM.text.toString())
+                 val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(FUM.text.toString())
                  RB1.isChecked=true
                  CalcularSemanas(FUM,Fecha1)
                  CalculoSemanas.setText(CalculoSemanas.text)
@@ -80,7 +80,7 @@
          P_Eco.addTextChangedListener(object : TextWatcher {
              @RequiresApi(Build.VERSION_CODES.N)
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                 val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy").parse(P_Eco.text.toString())
+                 val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(P_Eco.text.toString())
                  RB2.isChecked=true
                  Semanas.isEnabled=true
                  if (Semanas.text.isEmpty()){
@@ -98,9 +98,9 @@
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                  if (Semanas.length()>0){
                 if (Semanas.text.substring(0,1)!=".") {
-                     if (P_Eco.text.isEmpty()){}
-                     else if (Semanas.text.isNotEmpty()){
-                         val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy").parse(P_Eco.text.toString())
+                     if (P_Eco.text.isNotEmpty()){
+                     if (Semanas.text.isNotEmpty()){
+                         val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(P_Eco.text.toString())
                          if ((Semanas.text.substring(Semanas.text.length - 1))!="."){
                              if (Semanas.text.indexOf(".",0)>0){
                                     if(Semanas.text.split(".")[1].toInt()>6){
@@ -112,7 +112,7 @@
                      else if (Semanas.text.isEmpty()) {
                          Edad_Actual.setText(resources.getString(R.string.Edad_actual) )
                          FUM_Corregida.setText("")
-                     }}}
+                     }}}}
              else {
                     Edad_Actual.setText(""+ resources.getString(R.string.Edad_actual))
                      FUM_Corregida.setText("")
@@ -131,7 +131,7 @@
          ParaFecha.addTextChangedListener(object : TextWatcher {
              @RequiresApi(Build.VERSION_CODES.N)
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                 val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy").parse(ParaFecha.text.toString())
+                 val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(ParaFecha.text.toString())
                  if (RB1.isChecked){
                      if (FUM.text.isNotEmpty()){CalcularSemanas(FUM,Fecha1)}}
                  else{
@@ -142,26 +142,27 @@
 
          CalculoSemanas.addTextChangedListener(object : TextWatcher {
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                 var formatFecha=SimpleDateFormat("dd/MM/yyyy",Locale.US)
                  if (S38.text.isNotEmpty()){
                      if (CalculoSemanas.text.isNotEmpty()){
-                     val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy").parse(S38.text.toString())
-                     var dia: Int;
-                     var mes: Int;
+                     val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(S38.text.toString())
+                     var dia: Int
+                     var mes: Int
                      var anho: Int
                      val calendario = Calendar.getInstance()
                      calendario.setTime(Fecha2)
                          dia = calendario.get(Calendar.DAY_OF_MONTH)
                          mes = calendario.get(Calendar.MONTH) + 1
                          anho = calendario.get(Calendar.YEAR)
-                         calendario.add(Calendar.DAY_OF_YEAR,-266);
+                         calendario.add(Calendar.DAY_OF_YEAR,-266)
                          dia = calendario.get(Calendar.DAY_OF_MONTH)
                          mes = calendario.get(Calendar.MONTH) + 1
                          anho = calendario.get(Calendar.YEAR)
-                         calendario.add(Calendar.DAY_OF_YEAR,CalculoSemanas.text.toString().toInt()*7);
+                         calendario.add(Calendar.DAY_OF_YEAR,CalculoSemanas.text.toString().toInt()*7)
                      dia = calendario.get(Calendar.DAY_OF_MONTH)
                      mes = calendario.get(Calendar.MONTH) + 1
                      anho = calendario.get(Calendar.YEAR)
-                     CumpleSemanas.setText(" " + dia.twoDigits() + "/" + mes.twoDigits() + "/" + anho).toString()
+                     CumpleSemanas.text=(" " + dia.twoDigits() + "/" + mes.twoDigits() + "/" + anho).toString()
 
                  }
                  else
@@ -171,8 +172,8 @@
              override fun afterTextChanged(p0: Editable) {} })
      }
 
-     private fun Fecha(view: View) {
-         when (view?.id) {
+     private fun fecha(view: View) {
+         when (view.id) {
              R.id.FUM -> {PedirFecha(FUM, ParaFecha, "Ingresar fecha de última menstruación")}
              R.id.P_Eco -> {PedirFecha(P_Eco, ParaFecha,"Ingresar fecha de Primera ecografía")}
              R.id.ParaFecha -> {PedirFecha(ParaFecha, ParaFecha,"Calcular para fecha:")}}}
@@ -181,22 +182,22 @@
      fun RadioButton_click(view: View) {
          if (RB1.isChecked)
             {if(FUM.text.isNotEmpty()){
-               val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy").parse(FUM.text.toString())
+               val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(FUM.text.toString())
                CalcularSemanas(FUM,Fecha2)}
             else
-            {Fecha(FUM)}}
+            {fecha(FUM)}}
          else
              {if(P_Eco.text.isNotEmpty()){
-                 val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy").parse(P_Eco.text.toString())
+                 val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(P_Eco.text.toString())
                  CalcularSemanas(P_Eco,Fecha2)}
              else
-             {Fecha(P_Eco)}}
+             {fecha(P_Eco)}}
      }
 
      @RequiresApi(Build.VERSION_CODES.N)
      fun CalcularSemanas (Input:EditText, Fecha1:Date){
 
-         val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy").parse(ParaFecha.text.toString())
+         val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(ParaFecha.text.toString())
              if (Fecha2<Fecha1) {
                  FUM_Corregida.setText("")
                  Edad_Actual.setText(resources.getString(R.string.Edad_actual))
@@ -242,13 +243,13 @@
 
      @RequiresApi(Build.VERSION_CODES.N)
      fun Formato_Semanas (Origen:EditText, difsemanas:Long, diferencia:Long, diaseco:Int){
-        var dia: Int;
-         var mes: Int;
+        var dia: Int
+         var mes: Int
          var anho: Int
          val calendario = Calendar.getInstance()
          Edad_Actual.setText(resources.getString(R.string.Edad_actual) + " " + difsemanas.toString()+","+diferencia.toString() + " semanas")
 
-         val PF:Date = SimpleDateFormat("dd/MM/yyyy").parse(Origen.text.toString())
+         val PF:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(Origen.text.toString())
          calendario.setTime(PF)
          var diasmenor= Origen.text.substring(0,2).toInt()
          var mesesmenor= Origen.text.substring(3,5).toInt()
@@ -289,8 +290,8 @@
                  mesmenor=mesesmenor-11}
              else
              {mesmenor=mesmenor+1}
-             val fechamenor:Date=SimpleDateFormat("dd/MM/yyyy").parse(""+diasmayor + "/"+mesmenor+"/"+anhosmayor)
-             val fechamayor:Date=SimpleDateFormat("dd/MM/yyyy").parse(""+diasmenor + "/"+mesesmenor+"/"+anhosmenor)
+             val fechamenor:Date=SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(""+diasmayor + "/"+mesmenor+"/"+anhosmayor)
+             val fechamayor:Date=SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(""+diasmenor + "/"+mesesmenor+"/"+anhosmenor)
              dias1= ((fechamenor.time-fechamayor.time)/86400000).toInt()
          }
 
@@ -301,7 +302,7 @@
 
          calendario.add(Calendar.DAY_OF_YEAR,(37 * 7)-diaseco)
          for (semanas in 1..5) {
-             calendario.add(Calendar.DAY_OF_YEAR,7);
+             calendario.add(Calendar.DAY_OF_YEAR,7)
              dia = calendario.get(Calendar.DAY_OF_MONTH)
              mes = calendario.get(Calendar.MONTH) + 1
              anho = calendario.get(Calendar.YEAR)
@@ -324,7 +325,7 @@
                  day = c.get(Calendar.DAY_OF_MONTH)
                  val month=month+1
              } else {
-                 val miFecha:Date = SimpleDateFormat("dd/MM/yyyy").parse(input.text.toString())
+                 val miFecha:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(input.text.toString())
                  c.setTime(miFecha)
                  year = c.get(Calendar.YEAR)
                  month = c.get(Calendar.MONTH)
@@ -392,7 +393,7 @@
          editor.commit()}
 
      fun showRateDialog(context: Context?) {
-         val imagen = ImageView  (this);
+         val imagen = ImageView  (this)
          imagen.setImageResource(R.drawable.estrellas)
          val builder = android.app.AlertDialog.Builder(context)
              .setTitle(resources.getString(R.string.titulocalifica))
