@@ -24,4 +24,9 @@
     <string name="mes">month and</string>
     <string name="dia">day</string>
     <string name="semcorto">weeks</string>
+    <string name="titulocalifica">Rate the app!</string>
+    <string name="subtitulocalifica">We hope your 5 stars</string>
+    <string name="calificar">Rate now</string>
+    <string name="mastarde">Remember me later</string>
+    <string name="nunca">Do not rate</string>
 </resources>

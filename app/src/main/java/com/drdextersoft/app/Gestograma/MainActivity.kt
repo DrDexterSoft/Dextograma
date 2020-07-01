@@ -1,5 +1,6 @@
  package com.drdextersoft.app.Gestograma
 
+ import android.annotation.SuppressLint
  import android.app.DatePickerDialog
  import android.content.Context
  import android.content.DialogInterface
@@ -49,7 +50,7 @@
          windowManager.defaultDisplay.getMetrics(metrics)
          if(metrics.widthPixels<650){
              TextView12.left=TextView12.left+5
-             TextView12.setText(""+getResources().getString(R.string.semcorto) )}
+             TextView12.setText(resources.getString(R.string.semcorto) )}
          else if (metrics.widthPixels>1080) {
              val param = pantalla.layoutParams as ViewGroup.MarginLayoutParams
              param.setMargins(50,0,0,0)
@@ -92,6 +93,7 @@
              override fun afterTextChanged(p0: Editable) {} })
 
          Semanas.addTextChangedListener(object : TextWatcher {
+             @SuppressLint("SetTextI18n")
              @RequiresApi(Build.VERSION_CODES.N)
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                  if (Semanas.length()>0){
@@ -108,11 +110,11 @@
 
                              CalcularSemanas(P_Eco,Fecha2)}}
                      else if (Semanas.text.isEmpty()) {
-                         Edad_Actual.setText(""+getResources().getString(R.string.Edad_actual) )
+                         Edad_Actual.setText(resources.getString(R.string.Edad_actual) )
                          FUM_Corregida.setText("")
                      }}}
              else {
-                    Edad_Actual.setText(""+getResources().getString(R.string.Edad_actual))
+                    Edad_Actual.setText(""+ resources.getString(R.string.Edad_actual))
                      FUM_Corregida.setText("")
                      Meses.setText("")
                      S38.setText("")
@@ -197,7 +199,7 @@
          val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy").parse(ParaFecha.text.toString())
              if (Fecha2<Fecha1) {
                  FUM_Corregida.setText("")
-                 Edad_Actual.setText(""+getResources().getString(R.string.Edad_actual))
+                 Edad_Actual.setText(resources.getString(R.string.Edad_actual))
                  Meses.setText("")
                  S38.setText("")
                  S39.setText("")
@@ -244,7 +246,7 @@
          var mes: Int;
          var anho: Int
          val calendario = Calendar.getInstance()
-         Edad_Actual.setText(""+getResources().getString(R.string.Edad_actual) + " " + difsemanas.toString()+","+diferencia.toString() + " semanas")
+         Edad_Actual.setText(resources.getString(R.string.Edad_actual) + " " + difsemanas.toString()+","+diferencia.toString() + " semanas")
 
          val PF:Date = SimpleDateFormat("dd/MM/yyyy").parse(Origen.text.toString())
          calendario.setTime(PF)
@@ -259,7 +261,7 @@
                 dia = calendario.get(Calendar.DAY_OF_MONTH)
                 mes = calendario.get(Calendar.MONTH) + 1
                 anho = calendario.get(Calendar.YEAR)
-                FUM_Corregida.setText(""+getResources().getString(R.string.FUM_Corregida) + " " + dia.twoDigits() + "/" + mes.twoDigits() + "/" + anho).toString()
+                FUM_Corregida.setText(resources.getString(R.string.FUM_Corregida) + " " + dia.twoDigits() + "/" + mes.twoDigits() + "/" + anho).toString()
                 calendario.add(Calendar.DAY_OF_YEAR,+diaseco)
                 diasmenor= dia
                 mesesmenor= mes
@@ -293,8 +295,8 @@
          }
 
          var textomes:String="";var textodias:String=""
-         if (meses1>1){textomes= getResources().getString(R.string.meses) }else{textomes=getResources().getString(R.string.mes)  }
-         if (dias1>1){textodias=getResources().getString(R.string.dias) } else{textodias=getResources().getString(R.string.dia) }
+         if (meses1>1){textomes= resources.getString(R.string.meses) }else{textomes=resources.getString(R.string.mes)  }
+         if (dias1>1){textodias=resources.getString(R.string.dias) } else{textodias=resources.getString(R.string.dia) }
          Meses.setText( ""+ meses1 + " " + textomes+ " " + dias1 + " " + textodias)
 
          calendario.add(Calendar.DAY_OF_YEAR,(37 * 7)-diaseco)
@@ -393,10 +395,10 @@
          val imagen = ImageView  (this);
          imagen.setImageResource(R.drawable.estrellas)
          val builder = android.app.AlertDialog.Builder(context)
-             .setTitle("Califica la aplicación!")
-             .setMessage("Esperamos tus 5 estrellas")
+             .setTitle(resources.getString(R.string.titulocalifica))
+             .setMessage(resources.getString((R.string.subtitulocalifica)))
              .setView(imagen)
-             .setPositiveButton("Calificar",
+             .setPositiveButton(resources.getString(R.string.calificar),
                  DialogInterface.OnClickListener { dialog, which ->
                      grabarPreferencias(20)
                      if (context != null) {
@@ -420,8 +422,8 @@
                          )
                      }
                  })
-             .setNegativeButton("nunca",DialogInterface.OnClickListener{dialog,which -> grabarPreferencias(20)})
-             .setNeutralButton("recordar mas tarde",DialogInterface.OnClickListener{dialog,which -> grabarPreferencias(1)})
+             .setNegativeButton(resources.getString(R.string.nunca),DialogInterface.OnClickListener{dialog,which -> grabarPreferencias(20)})
+             .setNeutralButton(resources.getString(R.string.mastarde),DialogInterface.OnClickListener{dialog,which -> grabarPreferencias(1)})
          builder.show()
      }
  }

@@ -24,4 +24,10 @@
     <string name="mes">mes y</string>
     <string name="dia">día</string>
     <string name="semcorto">sem</string>
+    <string name="titulocalifica">Califica la aplicación!</string>
+    <string name="subtitulocalifica">Esperamos tus 5 estrellas</string>
+    <string name="calificar">Calificar ahora</string>
+    <string name="mastarde">Recordar mas tarde</string>
+    <string name="nunca">No recordar</string>
+
 </resources>

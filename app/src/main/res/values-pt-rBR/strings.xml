@@ -24,4 +24,9 @@
     <string name="mes">mes e</string>
     <string name="dia">dia</string>
     <string name="semcorto">sem</string>
+    <string name="titulocalifica">" Avalie o aplicativo"</string>
+    <string name="subtitulocalifica">Esperamos suas 5 estrelas</string>
+    <string name="mastarde">Lembrar-me depois</string>
+    <string name="calificar">" Avalie agora"</string>
+    <string name="nunca">Não avalie</string>
 </resources>
