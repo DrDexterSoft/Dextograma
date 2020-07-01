@@ -3,13 +3,11 @@
  import android.annotation.SuppressLint
  import android.app.DatePickerDialog
  import android.content.Context
- import android.content.DialogInterface
  import android.content.Intent
  import android.content.pm.PackageManager
  import android.net.Uri
  import android.os.Build
  import android.os.Bundle
- import android.provider.Settings.Global.putString
  import android.text.Editable
  import android.text.TextUtils
  import android.text.TextWatcher
@@ -18,7 +16,6 @@
  import android.view.MenuItem
  import android.view.View
  import android.view.ViewGroup
- import android.view.inputmethod.InputMethodManager
  import android.widget.EditText
  import android.widget.ImageView
  import androidx.annotation.RequiresApi
@@ -50,7 +47,7 @@
          windowManager.defaultDisplay.getMetrics(metrics)
          if(metrics.widthPixels<650){
              TextView12.left=TextView12.left+5
-             TextView12.setText(resources.getString(R.string.semcorto) )}
+             TextView12.text = resources.getString(R.string.semcorto)}
          else if (metrics.widthPixels>1080) {
              val param = pantalla.layoutParams as ViewGroup.MarginLayoutParams
              param.setMargins(50,0,0,0)
@@ -72,7 +69,7 @@
                  val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(FUM.text.toString())
                  RB1.isChecked=true
                  CalcularSemanas(FUM,Fecha1)
-                 CalculoSemanas.setText(CalculoSemanas.text)
+                 CalculoSemanas.text = CalculoSemanas.text
              }
              override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
              override fun afterTextChanged(p0: Editable) {}})
@@ -87,7 +84,7 @@
                      Semanas.requestFocus()
                  }
                  else {CalcularSemanas(P_Eco,Fecha1)}
-                 CalculoSemanas.setText(CalculoSemanas.text)
+                 CalculoSemanas.text = CalculoSemanas.text
              }
              override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
              override fun afterTextChanged(p0: Editable) {} })
@@ -110,13 +107,13 @@
 
                              CalcularSemanas(P_Eco,Fecha2)}}
                      else if (Semanas.text.isEmpty()) {
-                         Edad_Actual.setText(resources.getString(R.string.Edad_actual) )
-                         FUM_Corregida.setText("")
+                         Edad_Actual.text = resources.getString(R.string.Edad_actual)
+                         FUM_Corregida.text = ""
                      }}}}
              else {
-                    Edad_Actual.setText(""+ resources.getString(R.string.Edad_actual))
-                     FUM_Corregida.setText("")
-                     Meses.setText("")
+                     Edad_Actual.text = ""+ resources.getString(R.string.Edad_actual)
+                     FUM_Corregida.text = ""
+                     Meses.text = ""
                      S38.setText("")
                      S39.setText("")
                      S40.setText("")
@@ -142,7 +139,6 @@
 
          CalculoSemanas.addTextChangedListener(object : TextWatcher {
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                 var formatFecha=SimpleDateFormat("dd/MM/yyyy",Locale.US)
                  if (S38.text.isNotEmpty()){
                      if (CalculoSemanas.text.isNotEmpty()){
                      val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(S38.text.toString())
@@ -150,7 +146,7 @@
                      var mes: Int
                      var anho: Int
                      val calendario = Calendar.getInstance()
-                     calendario.setTime(Fecha2)
+                         calendario.time = Fecha2
                          dia = calendario.get(Calendar.DAY_OF_MONTH)
                          mes = calendario.get(Calendar.MONTH) + 1
                          anho = calendario.get(Calendar.YEAR)
@@ -174,9 +170,9 @@
 
      private fun fecha(view: View) {
          when (view.id) {
-             R.id.FUM -> {PedirFecha(FUM, ParaFecha, "Ingresar fecha de última menstruación")}
-             R.id.P_Eco -> {PedirFecha(P_Eco, ParaFecha,"Ingresar fecha de Primera ecografía")}
-             R.id.ParaFecha -> {PedirFecha(ParaFecha, ParaFecha,"Calcular para fecha:")}}}
+             R.id.FUM -> {PedirFecha(FUM)}
+             R.id.P_Eco -> {PedirFecha(P_Eco)}
+             R.id.ParaFecha -> {PedirFecha(ParaFecha)}}}
 
      @RequiresApi(Build.VERSION_CODES.N)
      fun RadioButton_click(view: View) {
@@ -212,7 +208,7 @@
              var difsemanas:Long=((Fecha2.getTime()-Fecha1.getTime())/86400000/7)
              val difdias:Long=((Fecha2.getTime()-Fecha1.getTime())/86400000)
              var diferencia:Long=(difdias)-(difsemanas*7)
-             when (Input?.id) {
+             when (Input.id) {
                  R.id.P_Eco -> {
                      if (Semanas.text.isNotEmpty()) {
                          val semanaseco = Semanas.text.toString()
@@ -314,7 +310,8 @@
          }
      }
 
-     fun PedirFecha(input: EditText,  parainput: EditText, Nombre:String) {
+     @SuppressLint("SetTextI18n")
+     fun PedirFecha(input: EditText) {
              val c = Calendar.getInstance()
              val year :Int
              val month:Int
@@ -326,7 +323,7 @@
                  val month=month+1
              } else {
                  val miFecha:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(input.text.toString())
-                 c.setTime(miFecha)
+                 c.time = miFecha
                  year = c.get(Calendar.YEAR)
                  month = c.get(Calendar.MONTH)
                  day = c.get(Calendar.DAY_OF_MONTH)
@@ -337,7 +334,7 @@
          val dpd = DatePickerDialog(input.context, DatePickerDialog.OnDateSetListener {
                  view, year, month, day ->
                  val month=month+1
-                 input.setText("" + day.twoDigits() + "/" + month.twoDigits() + "/" + year)
+                 input.setText("""${day.twoDigits()}/${month.twoDigits()}/$year""")
              }, year, month, day)
              dpd.show()
      }
@@ -347,17 +344,7 @@
 
      override fun onOptionsItemSelected(item: MenuItem): Boolean {
          // Handle presses on the action bar menu items
-         var Idioma:String="";var IdiomaName:String=""
          when (item.itemId) {
-             R.id.espanhol -> {
-                 Idioma="es";IdiomaName="Español"
-             }
-             R.id.ingles -> {
-                 Idioma="en";IdiomaName="English"
-             }
-             R.id.portugues -> {
-                 Idioma="pt";IdiomaName="Português"
-             }
              R.id.acercade -> {
                  val acercade = Intent(this, About::class.java)
                  startActivity(acercade)
@@ -374,10 +361,10 @@
          return super.onCreateOptionsMenu(menu)
      }
 
-     fun mostrarValoracion(){
-         var preferencias = getSharedPreferences("contador", Context.MODE_PRIVATE)
+     private fun mostrarValoracion(){
+         val preferencias = getSharedPreferences("contador", Context.MODE_PRIVATE)
          //grabarPreferencias(1)
-         var contador=preferencias.getInt("contador", 1)
+         val contador=preferencias.getInt("contador", 1)
          if (contador<10){
              grabarPreferencias(contador+1)
         }
@@ -386,45 +373,47 @@
          }
      }
 
-     fun grabarPreferencias(valor:Int){
-         var preferencias = getSharedPreferences("contador", Context.MODE_PRIVATE)
+     private fun grabarPreferencias(valor:Int){
+         val preferencias = getSharedPreferences("contador", Context.MODE_PRIVATE)
          val editor = preferencias.edit()
          editor.putInt("contador", valor)
-         editor.commit()}
+         editor.apply()}
 
-     fun showRateDialog(context: Context?) {
+     private fun showRateDialog(context: Context?) {
          val imagen = ImageView  (this)
          imagen.setImageResource(R.drawable.estrellas)
          val builder = android.app.AlertDialog.Builder(context)
              .setTitle(resources.getString(R.string.titulocalifica))
              .setMessage(resources.getString((R.string.subtitulocalifica)))
              .setView(imagen)
-             .setPositiveButton(resources.getString(R.string.calificar),
-                 DialogInterface.OnClickListener { dialog, which ->
-                     grabarPreferencias(20)
-                     if (context != null) {
-                         var link = "market://details?id="
-                         try {
-                             // play market available
-                             context.getPackageManager()
-                                 .getPackageInfo("com.Android.vending", 0)
-                             // not available
-                         } catch (e: PackageManager.NameNotFoundException) {
-                             e.printStackTrace()
-                             // should use browser
-                             link = "https://play.google.com/store/apps/details?id="
-                         }
-                         // starts external action
-                         context.startActivity(
-                             Intent(
-                                 Intent.ACTION_VIEW,
-                                 Uri.parse(link + context.getPackageName())
-                             )
-                         )
+             .setPositiveButton(resources.getString(R.string.calificar)
+             ) { _, _ ->
+                 grabarPreferencias(20)
+                 if (context != null) {
+                     var link = "market://details?id="
+                     try {
+                         // play market available
+                         context.packageManager
+                             .getPackageInfo("com.Android.vending", 0)
+                         // not available
+                     } catch (e: PackageManager.NameNotFoundException) {
+                         e.printStackTrace()
+                         // should use browser
+                         link = "https://play.google.com/store/apps/details?id="
                      }
-                 })
-             .setNegativeButton(resources.getString(R.string.nunca),DialogInterface.OnClickListener{dialog,which -> grabarPreferencias(20)})
-             .setNeutralButton(resources.getString(R.string.mastarde),DialogInterface.OnClickListener{dialog,which -> grabarPreferencias(1)})
+                     // starts external action
+                     context.startActivity(
+                         Intent(
+                             Intent.ACTION_VIEW,
+                             Uri.parse(link + context.packageName)
+                         )
+                     )
+                 }
+             }
+             .setNegativeButton(resources.getString(R.string.nunca)
+             ) { _, _ -> grabarPreferencias(20)}
+             .setNeutralButton(resources.getString(R.string.mastarde)
+             ) { _, _ -> grabarPreferencias(1)}
          builder.show()
      }
  }
