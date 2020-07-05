@@ -68,7 +68,7 @@
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                  val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(FUM.text.toString())
                  RB1.isChecked=true
-                 CalcularSemanas(FUM,Fecha1)
+                 calcularSemanas(FUM)
                  CalculoSemanas.text = CalculoSemanas.text
              }
              override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -83,7 +83,7 @@
                  if (Semanas.text.isEmpty()){
                      Semanas.requestFocus()
                  }
-                 else {CalcularSemanas(P_Eco,Fecha1)}
+                 else {calcularSemanas(P_Eco)}
                  CalculoSemanas.text = CalculoSemanas.text
              }
              override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -97,7 +97,6 @@
                 if (Semanas.text.substring(0,1)!=".") {
                      if (P_Eco.text.isNotEmpty()){
                      if (Semanas.text.isNotEmpty()){
-                         val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(P_Eco.text.toString())
                          if ((Semanas.text.substring(Semanas.text.length - 1))!="."){
                              if (Semanas.text.indexOf(".",0)>0){
                                     if(Semanas.text.split(".")[1].toInt()>6){
@@ -105,7 +104,7 @@
                                         Semanas.setSelection(Semanas.length())
                                     }}
 
-                             CalcularSemanas(P_Eco,Fecha2)}}
+                             calcularSemanas(P_Eco)}}
                      else if (Semanas.text.isEmpty()) {
                          Edad_Actual.text = resources.getString(R.string.Edad_actual)
                          FUM_Corregida.text = ""
@@ -128,11 +127,10 @@
          ParaFecha.addTextChangedListener(object : TextWatcher {
              @RequiresApi(Build.VERSION_CODES.N)
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                 val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(ParaFecha.text.toString())
                  if (RB1.isChecked){
-                     if (FUM.text.isNotEmpty()){CalcularSemanas(FUM,Fecha1)}}
+                     if (FUM.text.isNotEmpty()){calcularSemanas(FUM)}}
                  else{
-                     if (P_Eco.text.isNotEmpty()){CalcularSemanas(P_Eco,Fecha1)}}
+                     if (P_Eco.text.isNotEmpty()){calcularSemanas(P_Eco)}}
              }
              override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
              override fun afterTextChanged(p0: Editable) {} })
@@ -178,23 +176,22 @@
      fun RadioButton_click(view: View) {
          if (RB1.isChecked)
             {if(FUM.text.isNotEmpty()){
-               val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(FUM.text.toString())
-               CalcularSemanas(FUM,Fecha2)}
+               calcularSemanas(FUM)}
             else
             {fecha(FUM)}}
          else
              {if(P_Eco.text.isNotEmpty()){
-                 val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(P_Eco.text.toString())
-                 CalcularSemanas(P_Eco,Fecha2)}
+                 calcularSemanas(P_Eco)}
              else
              {fecha(P_Eco)}}
      }
 
      @RequiresApi(Build.VERSION_CODES.N)
-     fun CalcularSemanas (Input:EditText, Fecha1:Date){
+     fun calcularSemanas (Input:EditText){
 
+         val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(Input.text.toString())
          val Fecha2:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(ParaFecha.text.toString())
-             if (Fecha2<Fecha1) {
+         if (Fecha2<Fecha1) {
                  FUM_Corregida.setText("")
                  Edad_Actual.setText(resources.getString(R.string.Edad_actual))
                  Meses.setText("")
