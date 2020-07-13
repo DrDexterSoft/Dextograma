@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gestogram</string>
+    <string name="fum">UDM</string>
+    <string name="p_eco">Prima eco</string>
+    <string name="semanas">settimane</string>
+    <string name="calcular_para_fecha">Calcola per data:</string>
+    <string name="S38">38 settimane</string>
+    <string name="S39">39 settimane</string>
+    <string name="S40">40 settimane</string>
+    <string name="S41">41 settimane</string>
+    <string name="S42">42 settimane</string>
+    <string name="Cumple">conforme</string>
+    <string name="FUM_Corregida">UDM corretto:</string>
+    <string name="Edad_actual">Età gestazionale:</string>
+    <string name="CumpleSemanas">settimane dopo:</string>
+    <string name="Hints">Commenti, saluti, suggerimenti, collaborazioni!</string>
+    <string name="Enviar">Inviare una mail</string>
+    <string name="Salir">Partire</string>
+    <string name="about">Di…</string>
+    <string name="titulo">Gestogramma e calcolatrice gestazionale</string>
+    <string name="meses">mesi e</string>
+    <string name="dias">giorni</string>
+    <string name="mes">mese e</string>
+    <string name="dia">giorno</string>
+    <string name="semcorto">set</string>
+    <string name="titulocalifica">Valuta  l\'app!</string>
+    <string name="subtitulocalifica">Speriamo che le tue 5 stelle</string>
+    <string name="calificar">Vota adesso</string>
+    <string name="mastarde">Ricorda più tardi</string>
+    <string name="nunca">Non mi ricordo</string>
+</resources>

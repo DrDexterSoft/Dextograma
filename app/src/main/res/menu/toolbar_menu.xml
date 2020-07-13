@@ -3,38 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="es.uv.lisitt.actionbartest.MainActivity">
-    >
 
     <item
         android:id="@+id/empty"
         android:icon="@mipmap/engranaje"
         android:orderInCategory="101"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:title="TODO">
         <menu>
             <item
                 android:id="@+id/espanhol"
                 android:orderInCategory="100"
                 android:title="Español"
-                android:icon="@mipmap/espanha_round"
-                app:showAsAction="always|withText"
+                android:icon="@mipmap/logo2_round"
+                app:showAsAction="ifRoom|withText"
                 android:visible="false"
                 />
             <item
                 android:id="@+id/ingles"
                 android:orderInCategory="100"
                 android:title="English"
-                android:icon="@mipmap/eeuu_round"
-                app:showAsAction="always|withText"
+                android:icon="@mipmap/logo2_round"
+                app:showAsAction="ifRoom|withText"
                 android:visible="false"
                 />
 
             <item
                 android:id="@+id/portugues"
                 android:orderInCategory="100"
-                android:icon="@mipmap/brasil_round"
+                android:icon="@mipmap/logo2_round"
                 android:title="Português"
-                app:showAsAction="always|withText"
+                app:showAsAction="ifRoom|withText"
+                android:visible="false"
+                />
+            <item
+                android:id="@+id/italiano"
+                android:orderInCategory="100"
+                android:icon="@mipmap/logo2_round"
+                android:title="Italiano"
+                app:showAsAction="ifRoom|withText"
                 android:visible="false"
                 />
             <item
