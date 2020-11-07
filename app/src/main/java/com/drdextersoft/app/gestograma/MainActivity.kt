@@ -26,6 +26,7 @@
  import androidx.appcompat.app.AppCompatActivity
  import com.drdextersoft.app.myapplication.About
  import com.drdextersoft.app.myapplication.R
+ import com.drdextersoft.app.myapplication.R.*
  import kotlinx.android.synthetic.main.activity_main.*
  import java.text.SimpleDateFormat
  import java.util.*
@@ -36,13 +37,13 @@
      override fun onCreate(savedInstanceState: Bundle?) {
 
          super.onCreate(savedInstanceState)
-         setContentView(R.layout.activity_main)
+         setContentView(layout.activity_main)
 
          val actionBar = supportActionBar
          actionBar!!.title = "DEXTOGRAMA"
          actionBar.elevation = 4.0F
          actionBar.setDisplayShowHomeEnabled(true)
-         actionBar.setLogo(R.mipmap.logo_foreground)
+         actionBar.setLogo(mipmap.logo_foreground)
          actionBar.setDisplayUseLogoEnabled(true)
 
          mostrarValoracion()
@@ -51,15 +52,27 @@
          windowManager.defaultDisplay.getMetrics(metrics)
          if(metrics.widthPixels<650){
              SEMANAStxt.left=SEMANAStxt.left+5
-             SEMANAStxt.text = resources.getString(R.string.semcorto)}
+             SEMANAStxt.text = resources.getString(string.semcorto)}
          else if (metrics.widthPixels>1080) {
              val param = pantalla.layoutParams as ViewGroup.MarginLayoutParams
              param.setMargins(50,0,0,0)
              pantalla.layoutParams = param}
 
-         FUMtxt.setOnClickListener(){
-             Mostrar_Ayuda(FUMtxt.text as String, "Ayuda de FUM")
-         }
+         FUMtxt.setOnClickListener(){ this.Mostrar_Ayuda(FUMtxt.text as String, resources.getString(string.FUMtxt)) }
+         PRIMERAECOtxt.setOnClickListener(){ this.Mostrar_Ayuda(PRIMERAECOtxt.text as String, resources.getString(string.PRIMERAECOtxt)) }
+         SEMANAStxt.setOnClickListener(){ this.Mostrar_Ayuda(SEMANAStxt.text as String, resources.getString(string.PRIMERAECOtxt)) }
+         CALCULARPARAFECHAtxt.setOnClickListener(){ this.Mostrar_Ayuda(CALCULARPARAFECHAtxt.text as String, resources.getString(string.CALCULARPARAtxt)) }
+         FUM_Corregida.setOnClickListener(){ this.Mostrar_Ayuda(FUM_Corregida.text as String, resources.getString(string.FUMCORREGIDAtxt)) }
+         Edad_Actual.setOnClickListener(){ this.Mostrar_Ayuda(Edad_Actual.text as String,resources.getString(string.EDADGESTACIONALtxt)) }
+         Meses.setOnClickListener { this.Mostrar_Ayuda(Meses.text as String, resources.getString(string.EDADMESEStxt)) }
+         S38L.setOnClickListener(){ this.Mostrar_Ayuda(S38L.text as String, resources.getString(string.S38txt)) }
+         S39L.setOnClickListener(){ this.Mostrar_Ayuda(S39L.text as String, resources.getString(string.S39txt)) }
+         S40L.setOnClickListener(){ this.Mostrar_Ayuda(S40L.text as String, resources.getString(string.S40txt)) }
+         S41L.setOnClickListener(){ this.Mostrar_Ayuda(S41L.text as String, resources.getString(string.S41txt)) }
+         S42L.setOnClickListener(){ this.Mostrar_Ayuda(S42L.text as String, resources.getString(string.S42txt)) }
+         Cumple.setOnClickListener(){ this.Mostrar_Ayuda(Cumple.text as String, resources.getString(string.CUMPLE)) }
+
+
          FUM.setOnClickListener { v -> fecha(v) }
          P_Eco.setOnClickListener { v -> fecha(v) }
          ParaFecha.setOnClickListener { v -> fecha(v) }
@@ -113,11 +126,11 @@
 
                              calcularSemanas(P_Eco)}}
                      else if (Semanas.text.isEmpty()) {
-                         Edad_Actual.text = resources.getString(R.string.Edad_actual)
+                         Edad_Actual.text = resources.getString(string.Edad_actual)
                          FUM_Corregida.text = ""
                      }}}}
              else {
-                     Edad_Actual.text = ""+ resources.getString(R.string.Edad_actual)
+                     Edad_Actual.text = ""+ resources.getString(string.Edad_actual)
                      FUM_Corregida.text = ""
                      Meses.text = ""
                      S38.setText("")
@@ -175,9 +188,9 @@
 
      private fun fecha(view: View) {
          when (view.id) {
-             R.id.FUM -> {pedirFecha(FUM)}
-             R.id.P_Eco -> {pedirFecha(P_Eco)}
-             R.id.ParaFecha -> {pedirFecha(ParaFecha)}}}
+             id.FUM -> {pedirFecha(FUM)}
+             id.P_Eco -> {pedirFecha(P_Eco)}
+             id.ParaFecha -> {pedirFecha(ParaFecha)}}}
 
      @RequiresApi(Build.VERSION_CODES.N)
      fun radiobuttonClick(view: View) {
@@ -200,7 +213,7 @@
          val fecha2:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(ParaFecha.text.toString())
          if (fecha2<fecha1) {
              FUM_Corregida.text = ""
-             Edad_Actual.text = resources.getString(R.string.Edad_actual)
+             Edad_Actual.text = resources.getString(string.Edad_actual)
              Meses.text = ""
                  S38.setText("")
                  S39.setText("")
@@ -213,7 +226,7 @@
              val difdias:Long=((fecha2.time-fecha1.time)/86400000)
              var diferencia:Long=(difdias)-(difsemanas*7)
              when (Input.id) {
-                 R.id.P_Eco -> {
+                 id.P_Eco -> {
                      if (Semanas.text.isNotEmpty()) {
                          val semanaseco = Semanas.text.toString()
                          val entero:Int=semanaseco.substringBeforeLast(".").toInt()
@@ -236,7 +249,7 @@
                          formatoSemanas(P_Eco,difsemanas,diferencia,diaseco)
                      }
                   }
-                 R.id.FUM ->
+                 id.FUM ->
                  {formatoSemanas(FUM,difsemanas,diferencia,0)}
              }
      }}
@@ -248,7 +261,8 @@
          var mes: Int
          var anho: Int
          val calendario = Calendar.getInstance()
-         Edad_Actual.text = resources.getString(R.string.Edad_actual) + " " + difsemanas.toString()+","+diferencia.toString() + " " + resources.getString(R.string.semanas)
+         Edad_Actual.text = resources.getString(string.Edad_actual) + " " + difsemanas.toString()+","+diferencia.toString() + " " + resources.getString(
+             string.semanas)
 
          val pf:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(Origen.text.toString())
          calendario.time = pf
@@ -265,7 +279,7 @@
                 dia = calendario.get(Calendar.DAY_OF_MONTH)
                 mes = calendario.get(Calendar.MONTH) + 1
                 anho = calendario.get(Calendar.YEAR)
-                FUM_Corregida.setText(resources.getString(R.string.FUM_Corregida) + " " + dia.twoDigits() + "/" + mes.twoDigits() + "/" + anho).toString()
+                FUM_Corregida.setText(resources.getString(string.FUM_Corregida) + " " + dia.twoDigits() + "/" + mes.twoDigits() + "/" + anho).toString()
                 calendario.add(Calendar.DAY_OF_YEAR,+diaseco)
                 diasmenor= dia
                 mesesmenor= mes
@@ -300,8 +314,8 @@
          }
 
          val textomes:String;val textodias: String
-         textomes = if (meses1>1){resources.getString(R.string.meses)}else{resources.getString(R.string.mes)}
-         textodias = if (dias1>1){resources.getString(R.string.dias)} else{resources.getString(R.string.dia)}
+         textomes = if (meses1>1){resources.getString(string.meses)}else{resources.getString(string.mes)}
+         textodias = if (dias1>1){resources.getString(string.dias)} else{resources.getString(string.dia)}
          Meses.text = "$meses1 $textomes $dias1 $textodias"
 
          calendario.add(Calendar.DAY_OF_YEAR,(37 * 7)-diaseco)
@@ -356,19 +370,19 @@
          // Handle presses on the action bar menu items
          var idioma="";var idiomaName =""
          when (item.itemId) {
-             R.id.espanhol -> {
+             id.espanhol -> {
                  idioma="es";idiomaName="Español"
              }
-             R.id.ingles -> {
+             id.ingles -> {
                  idioma="en";idiomaName="English"
              }
-             R.id.portugues -> {
+             id.portugues -> {
                  idioma="pt";idiomaName="Português"
              }
-             R.id.italiano -> {
+             id.italiano -> {
                  idioma="it";idiomaName="Italiano"
              }
-             R.id.acercade -> {
+             id.acercade -> {
                  val acercade = Intent(this, About::class.java)
                  startActivity(acercade)
              }
@@ -424,12 +438,12 @@
 
      private fun showRateDialog(context: Context?) {
          val imagen = ImageView  (this)
-         imagen.setImageResource(R.drawable.estrellas)
+         imagen.setImageResource(drawable.estrellas)
          val builder = android.app.AlertDialog.Builder(context)
-             .setTitle(resources.getString(R.string.titulocalifica))
-             .setMessage(resources.getString((R.string.subtitulocalifica)))
+             .setTitle(resources.getString(string.titulocalifica))
+             .setMessage(resources.getString((string.subtitulocalifica)))
              .setView(imagen)
-             .setPositiveButton(resources.getString(R.string.calificar)
+             .setPositiveButton(resources.getString(string.calificar)
              ) { _, _ ->
                  grabarPreferencias(20)
                  if (context != null) {
@@ -453,18 +467,18 @@
                      )
                  }
              }
-             .setNegativeButton(resources.getString(R.string.nunca)
+             .setNegativeButton(resources.getString(string.nunca)
              ) { _, _ -> grabarPreferencias(20)}
-             .setNeutralButton(resources.getString(R.string.mastarde)
+             .setNeutralButton(resources.getString(string.mastarde)
              ) { _, _ -> grabarPreferencias(1)}
          builder.show()
      }
 
      private fun Mostrar_Ayuda (Mensaje1:String,Mensaje2:String){
-         AlertDialog.Builder(this,R.style.CustomDialogTheme)
+         AlertDialog.Builder(this, style.CustomDialogTheme)
              .setTitle(Mensaje1)
              .setMessage(Mensaje2)
-             .setPositiveButton("Salir") { dialog, which -> Log.d("MainActivity", "") }
+             //.setPositiveButton("Salir") { dialog, which -> Log.d("MainActivity", "") }
              .show()
 
      }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Gestogram</string>
-    <string name="fum">UDM</string>
+    <string name="fum">DUM</string>
     <string name="p_eco">Prima eco</string>
     <string name="semanas">settimane</string>
     <string name="calcular_para_fecha">Calcola per data:</string>
@@ -11,7 +11,7 @@
     <string name="S41">41 settimane</string>
     <string name="S42">42 settimane</string>
     <string name="Cumple">conforme</string>
-    <string name="FUM_Corregida">UDM corretto:</string>
+    <string name="FUM_Corregida">DUM corretto:</string>
     <string name="Edad_actual">Età gestazionale:</string>
     <string name="CumpleSemanas">settimane dopo:</string>
     <string name="Hints">Commenti, saluti, suggerimenti, collaborazioni!</string>
@@ -29,4 +29,19 @@
     <string name="calificar">Vota adesso</string>
     <string name="mastarde">Ricorda più tardi</string>
     <string name="nunca">Non mi ricordo</string>
+    <string name="FUMtxt">Calcola il tempo di gravidanza in base alla Data dell\'ultima mestruazione (DUM)</string>
+    <string name="PRIMERAECOtxt">Il primo campo (First echo) serve per il calcolo dell\'età gestazionale in base alla data in cui è stata eseguita la prima ecografia in questa gravidanza, e il secondo campo (settimane) è per le settimane riportate nel report per quell\'ecografia.</string>
+    <string name="SEMANAStxt">Il primo campo (First echo) serve per il calcolo dell\'età gestazionale in base alla data in cui è stata eseguita la prima ecografia in questa gravidanza, e il secondo campo (settimane) è per le settimane riportate nel report per quell\'ecografia.</string>
+    <string name="CALCULARPARAtxt">La data per la quale viene calcolata l\'età gestazionale. Per impostazione predefinita è la data corrente, ma può essere modificata per sapere quante settimane vengono soddisfatte in una data specifica.</string>
+    <string name="FUMCORREGIDAtxt">DUM corretto si riferisce alla data dell\'ultima mestruazione adattata al referto ecografico. È un calcolo preventivo per unificare le date.</string>
+    <string name="EDADGESTACIONALtxt">Visualizza l\'età gestazionale per la data impostata, per impostazione predefinita, per la data corrente.</string>
+    <string name="EDADMESEStxt">Età gestazionale in mesi</string>
+    <string name="S38txt">Data di completamento di 38 settimane</string>
+    <string name="S39txt">Data di completamento di 39 settimane</string>
+    <string name="S40txt">Data di completamento di 40 settimane</string>
+    <string name="S41txt">Data di completamento di 41 settimane</string>
+    <string name="S42txt">Data di completamento di 42 settimane</string>
+    <string name="CUMPLE">Mostra la data in cui le settimane inserite nel campo sono soddisfatte</string>
+
+
 </resources>

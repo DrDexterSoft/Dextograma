@@ -29,4 +29,19 @@
     <string name="mastarde">Lembrar-me depois</string>
     <string name="calificar">" Avalie agora"</string>
     <string name="nunca">Não avalie</string>
+    <string name="FUMtxt">Calcule o tempo de gravidez de acordo com a Data da Última Menstruação (DUM)</string>
+    <string name="PRIMERAECOtxt">O primeiro campo (Primeiro eco) é para calcular a idade gestacional com base na data em que o primeiro ultrassom foi realizado nesta gravidez, e o segundo campo (semanas) é para as semanas relatadas no relatório para aquele ultrassom.</string>
+    <string name="SEMANAStxt">O primeiro campo (Primeiro eco) é para calcular a idade gestacional com base na data em que o primeiro ultrassom foi realizado nesta gravidez, e o segundo campo (semanas) é para as semanas relatadas no relatório para aquele ultrassom.</string>
+    <string name="CALCULARPARAtxt">A data para a qual a idade gestacional é calculada. Por padrão, é a data atual, mas pode ser modificada para saber quantas semanas são cumpridas em uma data específica.</string>
+    <string name="FUMCORREGIDAtxt">DUM corrigido refere-se à data da última menstruação adaptada ao laudo de ultrassom. É um cálculo de estimativa para unificar datas.</string>
+    <string name="EDADGESTACIONALtxt">Exibe a idade gestacional para a data definida, por padrão, para a data atual.</string>
+    <string name="EDADMESEStxt">Idade gestacional em meses</string>
+    <string name="S38txt">Data de 38 semanas concluídas</string>
+    <string name="S39txt">Data de 39 semanas concluídas</string>
+    <string name="S40txt">Data de 40 semanas concluídas</string>
+    <string name="S41txt">Data de 41 semanas concluídas</string>
+    <string name="S42txt">Data de 42 semanas concluídas</string>
+    <string name="CUMPLE">Mostra a data em que as semanas inseridas no campo são cumpridas</string>
+
+
 </resources>

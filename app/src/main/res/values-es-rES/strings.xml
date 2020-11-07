@@ -29,5 +29,21 @@
     <string name="calificar">Calificar ahora</string>
     <string name="mastarde">Recordar mas tarde</string>
     <string name="nunca">No recordar</string>
+    <string name="FUMtxt">Calcula el tiempo de embarazo de acuerdo a la Fecha de Última Menstruación (FUM)</string>
+    <string name="PRIMERAECOtxt">El primer campo (Primera eco) es para calcular la edad gestacional según la fecha en que se realizó la primera ecografía en este embarazo, y el segundo campo (semanas) es para las semanas reportadas en el informe de esa ecografía.</string>
+    <string name="SEMANAStxt">El primer campo (Primera eco) es para calcular la edad gestacional según la fecha en que se realizó la primera ecografía en este embarazo, y el segundo campo (semanas) es para las semanas reportadas en el informe de esa ecografía.</string>
+    <string name="CALCULARPARAtxt">La fecha para la cual se calcula la edad gestacional. Por defecto es la fecha actual, pero se puede modificar para saber cuantas semanas se cumplen en una fecha específica.</string>
+    <string name="FUMCORREGIDAtxt">FUM Corregida se refiere a la fecha de última menstruación adaptada al informe ecográfico. Es un cálculo estimativo para unificar fechas.</string>
+    <string name="EDADGESTACIONALtxt">Muestra la edad gestacional para la fecha establecida, por defecto, para la fecha actual.</string>
+    <string name="EDADMESEStxt">Edad gestacional en meses</string>
+    <string name="S38txt">Fecha en que se cumplen 38 semanas</string>
+    <string name="S39txt">Fecha en que se cumplen 39 semanas</string>
+    <string name="S40txt">Fecha en que se cumplen 40 semanas</string>
+    <string name="S41txt">Fecha en que se cumplen 41 semanas</string>
+    <string name="S42txt">Fecha en que se cumplen 42 semanas</string>
+    <string name="CUMPLE">Muestra la fecha en que se cumplen las semanas ingresadas en el campo</string>
+
+
+
 
 </resources>

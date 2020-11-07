@@ -29,4 +29,19 @@
     <string name="calificar">Rate now</string>
     <string name="mastarde">Remember me later</string>
     <string name="nunca">Do not rate</string>
+    <string name="FUMtxt">Calculate the time of pregnancy according to the Date of Last Menstruation (DUM)</string>
+    <string name="PRIMERAECOtxt">The first field (First US) is for calculating gestational age based on the date the first ultrasound was performed in this pregnancy, and the second field (weeks) is for the weeks reported in the report for that ultrasound.</string>
+    <string name="SEMANAStxt">The first field (First echo) is for calculating gestational age based on the date the first ultrasound was performed in this pregnancy, and the second field (weeks) is for the weeks reported in the report for that ultrasound.</string>
+    <string name="CALCULARPARAtxt">The date for which gestational age is calculated. By default it is the current date, but it can be modified to know how many weeks are fulfilled on a specific date.</string>
+    <string name="FUMCORREGIDAtxt">Corrected LMP refers to the date of the last menstruation adapted to the ultrasound report. It is an estimate calculation to unify dates.</string>
+    <string name="EDADGESTACIONALtxt">Displays the gestational age for the date set, by default, for the current date.</string>
+    <string name="EDADMESEStxt">Gestational age in months</string>
+    <string name="S38txt">38th week date</string>
+    <string name="S39txt">39th week date</string>
+    <string name="S40txt">40th week date</string>
+    <string name="S41txt">41th week date</string>
+    <string name="S42txt">42th week date</string>
+    <string name="CUMPLE">Shows the date the weeks entered in the field are fulfilled</string>
+
+
 </resources>
