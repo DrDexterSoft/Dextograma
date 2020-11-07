@@ -1,6 +1,7 @@
  package com.drdextersoft.app.gestograma
 
  import android.annotation.SuppressLint
+ import android.app.AlertDialog
  import android.app.DatePickerDialog
  import android.content.Context
  import android.content.Intent
@@ -13,6 +14,7 @@
  import android.text.TextUtils
  import android.text.TextWatcher
  import android.util.DisplayMetrics
+ import android.util.Log
  import android.view.Menu
  import android.view.MenuItem
  import android.view.View
@@ -48,13 +50,16 @@
          val metrics = DisplayMetrics()
          windowManager.defaultDisplay.getMetrics(metrics)
          if(metrics.widthPixels<650){
-             TextView12.left=TextView12.left+5
-             TextView12.text = resources.getString(R.string.semcorto)}
+             SEMANAStxt.left=SEMANAStxt.left+5
+             SEMANAStxt.text = resources.getString(R.string.semcorto)}
          else if (metrics.widthPixels>1080) {
              val param = pantalla.layoutParams as ViewGroup.MarginLayoutParams
              param.setMargins(50,0,0,0)
              pantalla.layoutParams = param}
 
+         FUMtxt.setOnClickListener(){
+             Mostrar_Ayuda(FUMtxt.text as String, "Ayuda de FUM")
+         }
          FUM.setOnClickListener { v -> fecha(v) }
          P_Eco.setOnClickListener { v -> fecha(v) }
          ParaFecha.setOnClickListener { v -> fecha(v) }
@@ -453,6 +458,15 @@
              .setNeutralButton(resources.getString(R.string.mastarde)
              ) { _, _ -> grabarPreferencias(1)}
          builder.show()
+     }
+
+     private fun Mostrar_Ayuda (Mensaje1:String,Mensaje2:String){
+         AlertDialog.Builder(this,R.style.CustomDialogTheme)
+             .setTitle(Mensaje1)
+             .setMessage(Mensaje2)
+             .setPositiveButton("Salir") { dialog, which -> Log.d("MainActivity", "") }
+             .show()
+
      }
  }
 
