@@ -43,8 +43,8 @@
     <string name="S42txt">Fecha en que se cumplen 42 semanas</string>
     <string name="CUMPLE">Muestra la fecha en que se cumplen las semanas ingresadas en el campo</string>
     <string name="ayuda">Ayuda</string>
-    <string name="ayuda1">Como usar la aplicación</string>
-    <string name="ayuda2">Toque el texto descriptivo de cada elemento para información sobre ese campo.</string>
+    <string name="ayuda1">Mostrar textos de ayuda</string>
+    <string name="opcionayuda">Mostrar ayuda al presionar sobre los cuadros de texto</string>
 
 
 </resources>
