@@ -42,6 +42,9 @@
     <string name="S41txt">Data de 41 semanas concluídas</string>
     <string name="S42txt">Data de 42 semanas concluídas</string>
     <string name="CUMPLE">Mostra a data em que as semanas inseridas no campo são cumpridas</string>
+    <string name="ayuda">Ajuda</string>
+    <string name="ayuda1">Como usar o aplicativo</string>
+    <string name="ayuda2">Toque no texto descritivo de cada item para obter informações sobre esse campo.</string>
 
 
 </resources>

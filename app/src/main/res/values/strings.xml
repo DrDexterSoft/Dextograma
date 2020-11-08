@@ -41,7 +41,9 @@
     <string name="S41txt">41th week date</string>
     <string name="S42txt">42th week date</string>
     <string name="CUMPLE">Shows the date the weeks entered in the field are fulfilled</string>
-
+    <string name="ayuda">Help</string>
+    <string name="ayuda1">"How to use the app "</string>
+    <string name="ayuda2">Touch the descriptive text of each item for information about that field.</string>
 
 
 </resources>

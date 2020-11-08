@@ -45,6 +45,12 @@
                 android:visible="false"
                 />
             <item
+                android:id="@+id/ayuda"
+                android:orderInCategory="100"
+                android:title="@string/ayuda"
+                android:icon="@mipmap/about_round"
+                app:showAsAction="always|withText" />
+            <item
                 android:id="@+id/acercade"
                 android:orderInCategory="100"
                 android:title="@string/about"

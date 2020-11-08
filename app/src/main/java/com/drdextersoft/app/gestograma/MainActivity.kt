@@ -14,11 +14,10 @@
  import android.text.TextUtils
  import android.text.TextWatcher
  import android.util.DisplayMetrics
- import android.util.Log
  import android.view.Menu
  import android.view.MenuItem
  import android.view.View
- import android.view.ViewGroup
+ import android.view.ViewGroup.MarginLayoutParams
  import android.widget.EditText
  import android.widget.ImageView
  import android.widget.Toast
@@ -54,23 +53,23 @@
              SEMANAStxt.left=SEMANAStxt.left+5
              SEMANAStxt.text = resources.getString(string.semcorto)}
          else if (metrics.widthPixels>1080) {
-             val param = pantalla.layoutParams as ViewGroup.MarginLayoutParams
+             val param = pantalla.layoutParams as MarginLayoutParams
              param.setMargins(50,0,0,0)
              pantalla.layoutParams = param}
 
-         FUMtxt.setOnClickListener(){ this.Mostrar_Ayuda(FUMtxt.text as String, resources.getString(string.FUMtxt)) }
-         PRIMERAECOtxt.setOnClickListener(){ this.Mostrar_Ayuda(PRIMERAECOtxt.text as String, resources.getString(string.PRIMERAECOtxt)) }
-         SEMANAStxt.setOnClickListener(){ this.Mostrar_Ayuda(SEMANAStxt.text as String, resources.getString(string.PRIMERAECOtxt)) }
-         CALCULARPARAFECHAtxt.setOnClickListener(){ this.Mostrar_Ayuda(CALCULARPARAFECHAtxt.text as String, resources.getString(string.CALCULARPARAtxt)) }
-         FUM_Corregida.setOnClickListener(){ this.Mostrar_Ayuda(FUM_Corregida.text as String, resources.getString(string.FUMCORREGIDAtxt)) }
-         Edad_Actual.setOnClickListener(){ this.Mostrar_Ayuda(Edad_Actual.text as String,resources.getString(string.EDADGESTACIONALtxt)) }
-         Meses.setOnClickListener { this.Mostrar_Ayuda(Meses.text as String, resources.getString(string.EDADMESEStxt)) }
-         S38L.setOnClickListener(){ this.Mostrar_Ayuda(S38L.text as String, resources.getString(string.S38txt)) }
-         S39L.setOnClickListener(){ this.Mostrar_Ayuda(S39L.text as String, resources.getString(string.S39txt)) }
-         S40L.setOnClickListener(){ this.Mostrar_Ayuda(S40L.text as String, resources.getString(string.S40txt)) }
-         S41L.setOnClickListener(){ this.Mostrar_Ayuda(S41L.text as String, resources.getString(string.S41txt)) }
-         S42L.setOnClickListener(){ this.Mostrar_Ayuda(S42L.text as String, resources.getString(string.S42txt)) }
-         Cumple.setOnClickListener(){ this.Mostrar_Ayuda(Cumple.text as String, resources.getString(string.CUMPLE)) }
+         FUMtxt.setOnClickListener{ this.mostrar_ayuda(FUMtxt.text as String, resources.getString(string.FUMtxt)) }
+         PRIMERAECOtxt.setOnClickListener{ this.mostrar_ayuda(PRIMERAECOtxt.text as String, resources.getString(string.PRIMERAECOtxt)) }
+         SEMANAStxt.setOnClickListener{ this.mostrar_ayuda(SEMANAStxt.text as String, resources.getString(string.PRIMERAECOtxt)) }
+         CALCULARPARAFECHAtxt.setOnClickListener{ this.mostrar_ayuda(CALCULARPARAFECHAtxt.text as String, resources.getString(string.CALCULARPARAtxt)) }
+         FUM_Corregida.setOnClickListener{ this.mostrar_ayuda(FUM_Corregida.text as String, resources.getString(string.FUMCORREGIDAtxt)) }
+         Edad_Actual.setOnClickListener{ this.mostrar_ayuda(Edad_Actual.text as String,resources.getString(string.EDADGESTACIONALtxt)) }
+         Meses.setOnClickListener { this.mostrar_ayuda(Meses.text as String, resources.getString(string.EDADMESEStxt)) }
+         S38L.setOnClickListener { this.mostrar_ayuda(S38L.text as String, resources.getString(string.S38txt)) }
+         S39L.setOnClickListener{ this.mostrar_ayuda(S39L.text as String, resources.getString(string.S39txt)) }
+         S40L.setOnClickListener{ this.mostrar_ayuda(S40L.text as String, resources.getString(string.S40txt)) }
+         S41L.setOnClickListener{ this.mostrar_ayuda(S41L.text as String, resources.getString(string.S41txt)) }
+         S42L.setOnClickListener{ this.mostrar_ayuda(S42L.text as String, resources.getString(string.S42txt)) }
+         Cumple.setOnClickListener{ this.mostrar_ayuda(Cumple.text as String, resources.getString(string.CUMPLE)) }
 
 
          FUM.setOnClickListener { v -> fecha(v) }
@@ -193,7 +192,7 @@
              id.ParaFecha -> {pedirFecha(ParaFecha)}}}
 
      @RequiresApi(Build.VERSION_CODES.N)
-     fun radiobuttonClick(view: View) {
+     fun radiobuttonClick() {
          if (RB1.isChecked)
             {if(FUM.text.isNotEmpty()){
                calcularSemanas(FUM)}
@@ -355,7 +354,7 @@
 
              //Toast.makeText(input.context, Nombre, Toast.LENGTH_SHORT).show()
 
-         val dpd = DatePickerDialog(input.context, DatePickerDialog.OnDateSetListener {
+         val dpd = DatePickerDialog(input.context, {
                  _, year, month, day ->
                  val month=month+1
                  input.setText("""${day.twoDigits()}/${month.twoDigits()}/$year""")
@@ -381,6 +380,9 @@
              }
              id.italiano -> {
                  idioma="it";idiomaName="Italiano"
+             }
+             id.ayuda -> {
+                 this.mostrar_ayuda(resources.getString(string.ayuda1), resources.getString(string.ayuda2))
              }
              id.acercade -> {
                  val acercade = Intent(this, About::class.java)
@@ -439,7 +441,7 @@
      private fun showRateDialog(context: Context?) {
          val imagen = ImageView  (this)
          imagen.setImageResource(drawable.estrellas)
-         val builder = android.app.AlertDialog.Builder(context)
+         val builder = AlertDialog.Builder(context)
              .setTitle(resources.getString(string.titulocalifica))
              .setMessage(resources.getString((string.subtitulocalifica)))
              .setView(imagen)
@@ -474,7 +476,7 @@
          builder.show()
      }
 
-     private fun Mostrar_Ayuda (Mensaje1:String,Mensaje2:String){
+     private fun mostrar_ayuda (Mensaje1:String, Mensaje2:String){
          AlertDialog.Builder(this, style.CustomDialogTheme)
              .setTitle(Mensaje1)
              .setMessage(Mensaje2)
