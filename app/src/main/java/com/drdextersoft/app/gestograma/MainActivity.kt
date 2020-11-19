@@ -4,10 +4,8 @@
  import android.app.AlertDialog
  import android.app.DatePickerDialog
  import android.content.Context
- import android.content.DialogInterface
  import android.content.Intent
  import android.content.pm.PackageManager
- import android.content.res.Configuration
  import android.net.Uri
  import android.os.Build
  import android.os.Bundle
@@ -15,14 +13,12 @@
  import android.text.TextUtils
  import android.text.TextWatcher
  import android.util.DisplayMetrics
- import android.util.Log
  import android.view.Menu
  import android.view.MenuItem
  import android.view.View
  import android.view.ViewGroup.MarginLayoutParams
  import android.widget.EditText
  import android.widget.ImageView
- import android.widget.Toast
  import androidx.annotation.RequiresApi
  import androidx.appcompat.app.AppCompatActivity
  import com.drdextersoft.app.myapplication.About
@@ -34,13 +30,13 @@
 
  @Suppress("DEPRECATION", "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "NAME_SHADOWING")
  class MainActivity : AppCompatActivity() {
+     @SuppressLint("NewApi")
      @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
      override fun onCreate(savedInstanceState: Bundle?) {
 
          super.onCreate(savedInstanceState)
          setContentView(layout.activity_main)
 
-         val ayuda:Int
          val actionBar = supportActionBar
          actionBar!!.title = "DEXTOGRAMA"
          actionBar.elevation = 4.0F
@@ -60,27 +56,30 @@
              param.setMargins(50, 0, 0, 0)
              pantalla.layoutParams = param}
 
-         FUMtxt.setOnClickListener{ if (FUMtxt.tag==1){this.mostrar_ayuda(FUMtxt.text as String, resources.getString(string.FUMtxt))}}
-         PRIMERAECOtxt.setOnClickListener{ if (FUMtxt.tag==1){this.mostrar_ayuda(PRIMERAECOtxt.text as String, resources.getString(
+         FUMtxt.setOnClickListener{ if (FUMtxt.tag==1){this.mostrarayuda(FUMtxt.text as String, resources.getString(string.FUMtxt))}}
+         PRIMERAECOtxt.setOnClickListener{ if (FUMtxt.tag==1){this.mostrarayuda(PRIMERAECOtxt.text as String, resources.getString(
                  string.PRIMERAECOtxt
              ))}}
-         SEMANAStxt.setOnClickListener{ if (FUMtxt.tag==1){this.mostrar_ayuda(SEMANAStxt.text as String, resources.getString(string.PRIMERAECOtxt))}}
-         CALCULARPARAFECHAtxt.setOnClickListener{ if (FUMtxt.tag==1){this.mostrar_ayuda(CALCULARPARAFECHAtxt.text as String, resources.getString(string.CALCULARPARAtxt))}}
-         FUM_Corregida.setOnClickListener{ if (FUMtxt.tag==1){this.mostrar_ayuda(FUM_Corregida.text as String, resources.getString(
+         SEMANAStxt.setOnClickListener{ if (FUMtxt.tag==1){this.mostrarayuda(SEMANAStxt.text as String, resources.getString(string.PRIMERAECOtxt))}}
+         CALCULARPARAFECHAtxt.setOnClickListener{ if (FUMtxt.tag==1){this.mostrarayuda(CALCULARPARAFECHAtxt.text as String, resources.getString(string.CALCULARPARAtxt))}}
+         FUM_Corregida.setOnClickListener{ if (FUMtxt.tag==1){this.mostrarayuda(FUM_Corregida.text as String, resources.getString(
                  string.FUMCORREGIDAtxt
              ))}}
-         Edad_Actual.setOnClickListener{if (FUMtxt.tag==1){ this.mostrar_ayuda(Edad_Actual.text as String, resources.getString(
+         Edad_Actual.setOnClickListener{if (FUMtxt.tag==1){ this.mostrarayuda(Edad_Actual.text as String, resources.getString(
                  string.EDADGESTACIONALtxt
              ))}}
-         Meses.setOnClickListener { if (FUMtxt.tag==1){this.mostrar_ayuda(Meses.text as String, resources.getString(string.EDADMESEStxt))}}
-         S38L.setOnClickListener {if (FUMtxt.tag==1){ this.mostrar_ayuda(S38L.text as String, resources.getString(
+         Meses.setOnClickListener { if (FUMtxt.tag==1){this.mostrarayuda(Meses.text as String, resources.getString(string.EDADMESEStxt))}}
+         S38L.setOnClickListener {if (FUMtxt.tag==1){ this.mostrarayuda(S38L.text as String, resources.getString(
                  string.S38txt
              ))}}
-         S39L.setOnClickListener{ if (FUMtxt.tag==1){this.mostrar_ayuda(S39L.text as String,resources.getString(string.S39txt))}}
-         S40L.setOnClickListener{if (FUMtxt.tag==1){ this.mostrar_ayuda(S40L.text as String,resources.getString(string.S40txt))}}
-         S41L.setOnClickListener{ if (FUMtxt.tag==1){this.mostrar_ayuda(S41L.text as String,resources.getString(string.S41txt))}}
-         S42L.setOnClickListener{ if (FUMtxt.tag==1){this.mostrar_ayuda(S42L.text as String,resources.getString(string.S42txt))}}
-         Cumple.setOnClickListener{if (FUMtxt.tag==1){if (FUMtxt.tag==1){ this.mostrar_ayuda(Cumple.text as String, resources.getString(string.CUMPLE))}}}
+         S39L.setOnClickListener{ if (FUMtxt.tag==1){this.mostrarayuda(S39L.text as String,resources.getString(string.S39txt))}}
+         S40L.setOnClickListener{if (FUMtxt.tag==1){ this.mostrarayuda(S40L.text as String,resources.getString(string.S40txt))}}
+         S41L.setOnClickListener{ if (FUMtxt.tag==1){this.mostrarayuda(S41L.text as String,resources.getString(string.S41txt))}}
+         S42L.setOnClickListener{ if (FUMtxt.tag==1){this.mostrarayuda(S42L.text as String,resources.getString(string.S42txt))}}
+         Cumple.setOnClickListener{if (FUMtxt.tag==1){if (FUMtxt.tag==1){ this.mostrarayuda(Cumple.text as String, resources.getString(string.CUMPLE))}}}
+
+         RB1.setOnClickListener {if(FUM.text.isNotEmpty()){calcularSemanas(FUM)} else {fecha(FUM)}}
+         RB2.setOnClickListener {if(P_Eco.text.isNotEmpty()){calcularSemanas(P_Eco)} else {fecha(P_Eco)}}
 
 
          FUM.setOnClickListener { v -> fecha(v) }
@@ -159,11 +158,7 @@
                      Edad_Actual.text = "" + resources.getString(string.Edad_actual)
                      FUM_Corregida.text = ""
                      Meses.text = ""
-                     S38.setText("")
-                     S39.setText("")
-                     S40.setText("")
-                     S41.setText("")
-                     S42.setText("")
+                     S38.setText("");S39.setText("");S40.setText("");S41.setText("");S42.setText("")
                  }
              }
 
@@ -240,19 +235,7 @@
                  pedirFecha(ParaFecha)
              }}}
 
-     @RequiresApi(Build.VERSION_CODES.N)
-     fun radiobuttonClick() {
-         if (RB1.isChecked)
-            {if(FUM.text.isNotEmpty()){
-               calcularSemanas(FUM)}
-            else
-            {fecha(FUM)}}
-         else
-             {if(P_Eco.text.isNotEmpty()){
-                 calcularSemanas(P_Eco)}
-             else
-             {fecha(P_Eco)}}
-     }
+
 
      @RequiresApi(Build.VERSION_CODES.N)
      fun calcularSemanas(Input: EditText){
@@ -263,11 +246,7 @@
              FUM_Corregida.text = ""
              Edad_Actual.text = resources.getString(string.Edad_actual)
              Meses.text = ""
-                 S38.setText("")
-                 S39.setText("")
-                 S40.setText("")
-                 S41.setText("")
-                 S42.setText("")
+                 S38.setText("");S39.setText("");S40.setText("");S41.setText("");S42.setText("")
              }
                  else{
              var difsemanas:Long=((fecha2.time -fecha1.time)/86400000/7)
@@ -427,9 +406,9 @@
 
      override fun onOptionsItemSelected(item: MenuItem): Boolean {
          // Handle presses on the action bar menu items
-         var idioma="";var idiomaName =""
+         //val idioma=""; val idiomaName =""
          when (item.itemId) {
-             id.espanhol -> {
+          /*   id.espanhol -> {
                  idioma = "es";idiomaName = "Español"
              }
              id.ingles -> {
@@ -441,8 +420,9 @@
              id.italiano -> {
                  idioma = "it";idiomaName = "Italiano"
              }
+          */
              id.ayuda -> {
-                 this.mostrar_configuracion_ayuda(
+                 this.mostrarconfiguracionayuda(
                      resources.getString(string.ayuda1))
              }
              id.acercade -> {
@@ -451,6 +431,7 @@
              }
          }
 
+         /*
          if (idioma!="") {
              setLocale(idioma)
              val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
@@ -460,9 +441,10 @@
              }
              Toast.makeText(this, idiomaName, Toast.LENGTH_SHORT).show()
              finish()}
+         */
          return super.onOptionsItemSelected(item)
      }
-
+/*
      private fun setLocale(localeName: String) {
          val config = Configuration()
          val locale = Locale(localeName)
@@ -472,7 +454,7 @@
          startActivity(refresh)
          finish()
      }
-
+*/
 
      override fun onCreateOptionsMenu(menu: Menu): Boolean {
          // Inflate the menu to use in the action bar
@@ -482,17 +464,18 @@
      }
 
      private fun mostrarValoracion(){
-         val preferencias = getSharedPreferences("contador", Context.MODE_PRIVATE)
-         //grabarPreferencias(1)
+        val preferencias = getSharedPreferences("contador", Context.MODE_PRIVATE)
+         //grabarPreferencias("contador",1)
          val contador=preferencias.getInt("contador", 1)
          if (contador<10){
              grabarPreferencias("contador",contador + 1)
-        }
+            }
          else if (contador==10){
              showRateDialog(this)
+             grabarPreferencias("contador",1)
          }
          val ayudaval = getSharedPreferences("ayuda", Context.MODE_PRIVATE)
-         //grabarPreferencias(1)
+           //grabarPreferencias("ayuda",1)
            FUMtxt.tag=ayudaval.getInt("ayuda",1)
 
      }
@@ -544,7 +527,7 @@
          builder.show()
      }
 
-     private fun mostrar_ayuda(Mensaje1: String, Mensaje2: String){
+     private fun mostrarayuda(Mensaje1: String, Mensaje2: String){
          AlertDialog.Builder(this, style.CustomDialogTheme)
              .setTitle(Mensaje1)
              .setMessage(Mensaje2)
@@ -552,28 +535,25 @@
              .show()
      }
 
-     private fun mostrar_configuracion_ayuda(Mensaje: String){
+     private fun mostrarconfiguracionayuda(Mensaje: String){
          val multiChoiceItems = resources.getStringArray(array.dialog_multi_choice_array)
-         var valor:Int;var valorB:Boolean
-         if(FUMtxt.tag==1){valorB=true} else {valorB=false}
+         var valor:Int; val valorB:Boolean = FUMtxt.tag==1
          val checkedItems = booleanArrayOf(valorB)
          AlertDialog.Builder(this, style.CustomDialogTheme)
              .setTitle(Mensaje)
              .setMultiChoiceItems(
                  multiChoiceItems,
-                 checkedItems,
-                 object : DialogInterface.OnMultiChoiceClickListener {
-                     override fun onClick(
-                         dialog: DialogInterface?,
-                         index: Int,
-                         isChecked: Boolean
-                     ) {
-                         if(isChecked==true){valor=1} else {valor=0}
+                 checkedItems
+             ) { _, _, isChecked ->
+                 valor = if (isChecked) {
+                     1
+                 } else {
+                     0
+                 }
 
-                         grabarPreferencias("ayuda",valor)
-                         FUMtxt.tag=valor
-                     }
-                 })
+                 grabarPreferencias("ayuda", valor)
+                 FUMtxt.tag = valor
+             }
 
              .show()
      }
