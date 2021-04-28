@@ -47,7 +47,7 @@
     <string name="opcionayuda">Mostrar ayuda al presionar sobre los cuadros de texto</string>
     <string name="Guardar">Guardar</string>
     <string name="Novedades_Titulo">Guardar datos</string>
-    <string name="Novedades_Texto">Novedad: Se agrega la opción de guardar los datos de última menstruación o fecha de la primera ecografía, para el control de un único embarazo</string>
+    <string name="Novedades_Texto">Novedad: Añadida la opción de guardar los datos de la última menstruación o fecha de la primera ecografía, para el control de un único embarazo</string>
 
 
 </resources>
