@@ -44,6 +44,9 @@
     <string name="ayuda">Help</string>
     <string name="ayuda1">Show tips</string>
     <string name="opcionayuda">Show help when clicking on text boxes</string>
+    <string name="Guardar">Save</string>
+    <string name="Novedades_Titulo">Save data</string>
+    <string name="Novedades_Texto">New: The option to save the data of the last menstruation or date of the first ultrasound is added, for the control of a single pregnancy</string>
 
 
 </resources>

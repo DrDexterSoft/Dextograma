@@ -45,6 +45,9 @@
     <string name="ayuda">Ajuda</string>
     <string name="ayuda1">mostrar textos de ajuda</string>
     <string name="opcionayuda">Mostrar ajuda ao clicar nas caixas de texto</string>
+    <string name="Guardar">Salve</string>
+    <string name="Novedades_Titulo">" Guardar dados"</string>
+    <string name="Novedades_Texto">Novo: Adicionada a opção de salvar os dados da última menstruação ou data da primeira ultrassonografia, para o controle de uma única gravidez</string>
 
 
 </resources>

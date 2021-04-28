@@ -163,13 +163,21 @@ android:layout_marginLeft="10dp">
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
+    <CheckBox
+        android:id="@+id/Guardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Guardar datos"
+        >
 
+    </CheckBox>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp">
 
         <TextView

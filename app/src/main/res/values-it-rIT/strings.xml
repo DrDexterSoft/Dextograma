@@ -45,6 +45,9 @@
     <string name="ayuda">Aiuto</string>
     <string name="ayuda1">mostra i testi di aiuto</string>
     <string name="opcionayuda">Mostra la guida quando si fa clic sulle caselle di testo</string>
+    <string name="Guardar">Salva</string>
+    <string name="Novedades_Titulo">" Salvare i dati"</string>
+    <string name="Novedades_Texto">Novità: aggiunta l\'opzione per salvare i dati dell\'ultima mestruazione o la data della prima ecografia, per il controllo di una singola gravidanza</string>
 
 
 </resources>

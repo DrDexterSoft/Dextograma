@@ -36,6 +36,9 @@
 
          super.onCreate(savedInstanceState)
          setContentView(layout.activity_main)
+         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+         val currentDate = sdf.format(Date())
+         ParaFecha.setText(currentDate)
 
          val actionBar = supportActionBar
          actionBar!!.title = "DEXTOGRAMA"
@@ -81,21 +84,25 @@
          RB1.setOnClickListener {if(FUM.text.isNotEmpty()){calcularSemanas(FUM)} else {fecha(FUM)}}
          RB2.setOnClickListener {if(P_Eco.text.isNotEmpty()){calcularSemanas(P_Eco)} else {fecha(P_Eco)}}
 
+        Guardar.setOnClickListener{
+            grabarPreferenciasbool("guardar",Guardar.isChecked)}
 
          FUM.setOnClickListener { v -> fecha(v) }
          P_Eco.setOnClickListener { v -> fecha(v) }
          ParaFecha.setOnClickListener { v -> fecha(v) }
          Reset.setOnClickListener{
+             grabarPreferenciastxt("fumval","")
+             grabarPreferenciastxt("pecoval","")
+             grabarPreferenciastxt("semval","")
              val refresh = Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-             startActivity(refresh)}
-         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.US)
-         val currentDate = sdf.format(Date())
-         ParaFecha.setText(currentDate)
+             startActivity(refresh)
+         }
 
         FUM.addTextChangedListener(object : TextWatcher {
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(FUM.text.toString())
+                grabarPreferenciastxt("fumval",FUM.text.toString())
                 RB1.isChecked = true
                 calcularSemanas(FUM)
                 CalculoSemanas.text = CalculoSemanas.text
@@ -109,6 +116,7 @@
              @RequiresApi(Build.VERSION_CODES.N)
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                  //val Fecha1:Date = SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(P_Eco.text.toString())
+                 grabarPreferenciastxt("pecoval",P_Eco.text.toString())
                  RB2.isChecked = true
                  Semanas.isEnabled = true
                  if (Semanas.text.isEmpty()) {
@@ -127,6 +135,8 @@
              @SuppressLint("SetTextI18n")
              @RequiresApi(Build.VERSION_CODES.N)
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                 grabarPreferenciastxt("semval",Semanas.text.toString())
+
                  if (Semanas.length() > 0) {
                      if (Semanas.text.substring(0, 1) != ".") {
                          if (P_Eco.text.isNotEmpty()) {
@@ -340,9 +350,8 @@
              dias1= ((fechamenor.time-fechamayor.time)/86400000).toInt()
          }
 
-         val textomes:String;val textodias: String
-         textomes = if (meses1>1){resources.getString(string.meses)}else{resources.getString(string.mes)}
-         textodias = if (dias1>1){resources.getString(string.dias)} else{resources.getString(string.dia)}
+         val textomes:String = if (meses1>1){resources.getString(string.meses)}else{resources.getString(string.mes)}
+         val textodias: String = if (dias1>1){resources.getString(string.dias)} else{resources.getString(string.dia)}
          Meses.text = "$meses1 $textomes $dias1 $textodias"
 
          calendario.add(Calendar.DAY_OF_YEAR, (37 * 7) - diaseco)
@@ -463,20 +472,46 @@
          return super.onCreateOptionsMenu(menu)
      }
 
-     private fun mostrarValoracion(){
-        val preferencias = getSharedPreferences("contador", Context.MODE_PRIVATE)
+     @RequiresApi(Build.VERSION_CODES.N)
+     private fun mostrarValoracion() {
+         val preferencias = getSharedPreferences("contador", Context.MODE_PRIVATE)
          //grabarPreferencias("contador",1)
-         val contador=preferencias.getInt("contador", 1)
-         if (contador<10){
-             grabarPreferencias("contador",contador + 1)
-            }
-         else if (contador==10){
+         val contador = preferencias.getInt("contador", 1)
+         if (contador < 10) {
+             grabarPreferencias("contador", contador + 1)
+         } else if (contador == 10) {
              showRateDialog(this)
-             grabarPreferencias("contador",1)
+             grabarPreferencias("contador", 1)
          }
          val ayudaval = getSharedPreferences("ayuda", Context.MODE_PRIVATE)
-           //grabarPreferencias("ayuda",1)
-           FUMtxt.tag=ayudaval.getInt("ayuda",1)
+         //grabarPreferencias("ayuda",1)
+         FUMtxt.tag = ayudaval.getInt("ayuda", 1)
+         val guardarval=getSharedPreferences("guardar",Context.MODE_PRIVATE)
+         Guardar.isChecked=guardarval.getBoolean("guardar",false)
+         if(Guardar.isChecked){
+         val fumgrabada = getSharedPreferences("fumval", Context.MODE_PRIVATE)
+         if (fumgrabada.getString("fumval", "") != "") {
+             FUM.setText(fumgrabada.getString("fumval", ""))
+             calcularSemanas(FUM)
+         }
+         val semgrabada = getSharedPreferences("semval", Context.MODE_PRIVATE)
+         if (semgrabada.getString("semval", "") != "")
+         {Semanas.setText(semgrabada.getString("semval",""))
+         if(Semanas.text.isNotEmpty()){Semanas.isEnabled=true}}
+         val pecograbada = getSharedPreferences("pecoval", Context.MODE_PRIVATE)
+         if (pecograbada.getString("pecoval", "") != "") {
+         P_Eco.setText(pecograbada.getString("pecoval", ""))
+         RB2.isChecked=true
+         if (Semanas.text.isEmpty()){Semanas.setText("0")
+             Semanas.isEnabled=true}
+         calcularSemanas(P_Eco)
+     }}
+        val notificacion=getSharedPreferences("Notificacion",Context.MODE_PRIVATE)
+         if (notificacion.getInt("Notificacion",0)==0)
+         {this.mostrarayuda(resources.getString(
+             string.Novedades_Titulo),resources.getString(string.Novedades_Texto))
+         grabarPreferencias("Notificacion",1)
+         }
 
      }
 
@@ -484,6 +519,18 @@
          val preferencias = getSharedPreferences(campo, Context.MODE_PRIVATE)
          val editor = preferencias.edit()
          editor.putInt(campo, valor)
+         editor.apply()}
+
+     private fun grabarPreferenciastxt(campo:String,valor:String){
+         val preferencias = getSharedPreferences(campo, Context.MODE_PRIVATE)
+         val editor = preferencias.edit()
+         editor.putString(campo, valor)
+         editor.apply()}
+
+     private fun grabarPreferenciasbool(campo:String,valor:Boolean){
+         val preferencias = getSharedPreferences(campo, Context.MODE_PRIVATE)
+         val editor = preferencias.edit()
+         editor.putBoolean(campo, valor)
          editor.apply()}
 
      private fun showRateDialog(context: Context?) {
@@ -554,10 +601,8 @@
                  grabarPreferencias("ayuda", valor)
                  FUMtxt.tag = valor
              }
-
              .show()
      }
-
  }
 
 
