@@ -51,6 +51,12 @@
                 android:icon="@mipmap/ayuda_round"
                 app:showAsAction="always|withText" />
             <item
+                android:id="@+id/otras"
+                android:orderInCategory="100"
+                android:title="@string/otras"
+                android:icon="@mipmap/otras"
+                app:showAsAction="always|withText" />
+            <item
                 android:id="@+id/acercade"
                 android:orderInCategory="100"
                 android:title="@string/about"

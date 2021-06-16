@@ -22,6 +22,7 @@
  import androidx.annotation.RequiresApi
  import androidx.appcompat.app.AppCompatActivity
  import com.drdextersoft.app.myapplication.About
+ import com.drdextersoft.app.myapplication.Otras_app
  import com.drdextersoft.app.myapplication.R
  import com.drdextersoft.app.myapplication.R.*
  import kotlinx.android.synthetic.main.activity_main.*
@@ -438,6 +439,10 @@
              id.ayuda -> {
                  this.mostrarconfiguracionayuda(
                      resources.getString(string.ayuda1))
+             }
+             R.id.otras -> {
+                 val otras = Intent(this, Otras_app::class.java)
+                 startActivity(otras)
              }
              id.acercade -> {
                  val acercade = Intent(this, About::class.java)

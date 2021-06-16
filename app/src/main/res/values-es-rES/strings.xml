@@ -48,6 +48,14 @@
     <string name="Guardar">Guardar</string>
     <string name="Novedades_Titulo">Guardar datos</string>
     <string name="Novedades_Texto">Novedad: Añadida la opción de guardar los datos de la última menstruación o fecha de la primera ecografía, para el control de un único embarazo</string>
+    <string name="otras">Otras app\'s del autor</string>
+    <string name="dextograma_titulo">DEXTOGRAMA</string>
+    <string name="dextograma_descripcion">Gestograma y calculadora gestacional</string>
+    <string name="otras_titulo">Otras aplicaciones relacionadas</string>
+    <string name="nomenclador_titulo">Nomenclador CMQ - CIMAP</string>
+    <string name="nomenclador_descripcion">Nomencladores quirúrgicos para las especialidades del CMQP (Solo Paraguay)</string>
+    <string name="ovudex_titulo">OVUDEX</string>
+    <string name="ovudex_descripcion">Análisis de la regularidad del ciclo menstrual y calculadora de la ovulación</string>
 
 
 </resources>

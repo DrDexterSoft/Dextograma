@@ -47,6 +47,14 @@
     <string name="Guardar">Save</string>
     <string name="Novedades_Titulo">Save data</string>
     <string name="Novedades_Texto">xxx</string>
+    <string name="otras">other app\'s of the author</string>
+    <string name="dextograma_titulo">DEXTOGRAMA</string>
+    <string name="dextograma_descripcion">Gestogram and gestational calculator</string>
+    <string name="otras_titulo">other related applications</string>
+    <string name="nomenclador_titulo">Nomenclator CMQ - CIMAP</string>
+    <string name="nomenclador_descripcion">Surgical nomenclature for CMQP specialities (Only Paraguay)</string>
+    <string name="ovudex_titulo">OVUDEX</string>
+    <string name="ovudex_descripcion">analysis of the regularity of the menstrual cycle and menstruation calculator</string>
 
 
 </resources>
