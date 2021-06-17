@@ -440,7 +440,7 @@
                  this.mostrarconfiguracionayuda(
                      resources.getString(string.ayuda1))
              }
-             R.id.otras -> {
+             id.otras -> {
                  val otras = Intent(this, Otras_app::class.java)
                  startActivity(otras)
              }
@@ -485,13 +485,25 @@
      @RequiresApi(Build.VERSION_CODES.N)
      private fun mostrarValoracion() {
          val preferencias = getSharedPreferences("contador", Context.MODE_PRIVATE)
-         //grabarPreferencias("contador",1)
-         val contador = preferencias.getInt("contador", 1)
-         if (contador < 10) {
-             grabarPreferencias("contador", contador + 1)
+
+
+        val contador = preferencias.getInt("contador", 1)
+         //grabarPreferencias("detenerpuntuar", 0)
+         //FUMtxt.text=contador.toString()
+         if (contador < 10) {grabarPreferencias("contador", contador + 1)}
+         else{grabarPreferencias("contador", 0)}
+
+         if (contador==5){
+             val detenerovudex = getSharedPreferences("detenerovudex", Context.MODE_PRIVATE)
+             val detener = detenerovudex.getInt("detenerovudex", 0)
+             if (detener==0){showRateDialog("ovudex")}
          } else if (contador == 10) {
-             showRateDialog(this)
+             val detenerpuntuar = getSharedPreferences("detenerpuntuar", Context.MODE_PRIVATE)
+             val detener = detenerpuntuar.getInt("detenerpuntuar", 0)
+             if (detener==0){showRateDialog("puntuar")}
+         } else if (contador==20){
              grabarPreferencias("contador", 1)
+             grabarPreferencias("detenerpuntuar", 1)
          }
          val ayudaval = getSharedPreferences("ayuda", Context.MODE_PRIVATE)
          //grabarPreferencias("ayuda",1)
@@ -543,44 +555,62 @@
          editor.putBoolean(campo, valor)
          editor.apply()}
 
-     private fun showRateDialog(context: Context?) {
+     private fun showRateDialog(noticia:String) {
          val imagen = ImageView(this)
-         imagen.setImageResource(drawable.estrellas)
-         val builder = AlertDialog.Builder(context)
-             .setTitle(resources.getString(string.titulocalifica))
-             .setMessage(resources.getString((string.subtitulocalifica)))
-             .setView(imagen)
-             .setPositiveButton(
-                 resources.getString(string.calificar)
-             ) { _, _ ->
-                 grabarPreferencias("contador",20)
-                 if (context != null) {
-                     var link = "market://details?id="
-                     try {
-                         // play market available
-                         context.packageManager
-                             .getPackageInfo("com.Android.vending", 0)
-                         // not available
-                     } catch (e: PackageManager.NameNotFoundException) {
-                         e.printStackTrace()
-                         // should use browser
-                         link = "https://play.google.com/store/apps/details?id="
-                     }
-                     // starts external action
-                     context.startActivity(
-                         Intent(
-                             Intent.ACTION_VIEW,
-                             Uri.parse(link + context.packageName)
-                         )
-                     )
-                 }
+         var titulo=""; var mensaje=""; var botonpositivo=""; var botonnegativo=""; var botonneutral=""
+         var aplicacion=""; var detener=""
+
+         when (noticia){
+             "puntuar" -> {
+                 imagen.setImageResource(drawable.estrellas)
+                 titulo=resources.getString(string.titulocalifica)
+                 mensaje=resources.getString((string.subtitulocalifica))
+                 botonpositivo=resources.getString(string.calificar)
+                 botonnegativo=resources.getString(string.nunca)
+                 botonneutral=resources.getString(string.mastarde)
+                 aplicacion=this.packageName
+                 detener="detenerpuntuar"
              }
-             .setNegativeButton(
-                 resources.getString(string.nunca)
-             ) { _, _ -> grabarPreferencias("contador",20)}
-             .setNeutralButton(
-                 resources.getString(string.mastarde)
-             ) { _, _ -> grabarPreferencias("contador",1)}
+             "ovudex" -> {
+                 imagen.setImageResource(mipmap.ovudex)
+                 titulo="Nueva aplicación:\n" + resources.getString(string.ovudex_titulo)
+                 mensaje=resources.getString((string.ovudex_descripcion))
+                 botonpositivo=resources.getString(string.positivoaplicacion)
+                 botonnegativo=resources.getString(string.negativoaplicacion)
+                 botonneutral=resources.getString(string.neutroaplicacion)
+                 aplicacion="com.dexterlabs.calculodeovulacion"
+                 detener="detenerovudex"
+             }
+         }
+          val builder = AlertDialog.Builder(this)
+             .setTitle(titulo)
+             .setMessage(mensaje)
+             .setView(imagen)
+             .setPositiveButton(botonpositivo)
+              { _, _ ->
+                 grabarPreferencias(detener,1)
+                  var link = "market://details?id="
+                  try {
+                      // play market available
+                      this.packageManager
+                          .getPackageInfo("com.Android.vending", 0)
+                      // not available
+                  } catch (e: PackageManager.NameNotFoundException) {
+                      e.printStackTrace()
+                      // should use browser
+                      link = "https://play.google.com/store/apps/details?id="
+                  }
+                  // starts external action
+                  this.startActivity(
+                      Intent(
+                          Intent.ACTION_VIEW,
+                          Uri.parse(link + aplicacion)
+                      )
+                  )
+              }
+             .setNegativeButton(botonnegativo) {
+                     _, _ -> grabarPreferencias(detener,1)}
+             .setNeutralButton(botonneutral) { _, _ -> }
          builder.show()
      }
 

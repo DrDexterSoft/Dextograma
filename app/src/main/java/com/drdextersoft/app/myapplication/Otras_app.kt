@@ -34,7 +34,7 @@ class Otras_app : AppCompatActivity() {
 
     }
 
-    fun llamar_app(aplicacion:String){
+    private fun llamar_app(aplicacion:String){
         this.startActivity(
             Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=$aplicacion")))}
 

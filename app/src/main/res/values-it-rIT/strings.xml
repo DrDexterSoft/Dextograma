@@ -48,14 +48,17 @@
     <string name="Guardar">Salva</string>
     <string name="Novedades_Titulo">" Salvare i dati"</string>
     <string name="Novedades_Texto">Novità: aggiunta l\'opzione per salvare i dati dell\'ultima mestruazione o la data della prima ecografia, per il controllo di una singola gravidanza</string>
-    <string name="otras">Otras app\'s del autor</string>
+    <string name="otras">altre app\'s dell\'autore</string>
     <string name="dextograma_titulo">DEXTOGRAMA</string>
-    <string name="dextograma_descripcion">Gestograma y calculadora gestacional</string>
-    <string name="otras_titulo">Otras aplicaciones relacionadas</string>
+    <string name="dextograma_descripcion">Gestogramma e calcolatrice gestazionale</string>
+    <string name="otras_titulo">altre applicazioni correlate</string>
     <string name="nomenclador_titulo">Nomenclador CMQ - CIMAP</string>
-    <string name="nomenclador_descripcion">Nomencladores quirúrgicos para las especialidades del CMQP (Solo Paraguay)</string>
+    <string name="nomenclador_descripcion">Nomenclatura chirurgica per le specialità CMQP (Solo Paraguay)</string>
     <string name="ovudex_titulo">OVUDEX</string>
-    <string name="ovudex_descripcion">Análisis de la regularidad del ciclo menstrual y calculadora de la ovulación</string>
+    <string name="ovudex_descripcion">Analisi della regolarità del ciclo mestruale e calcolatore dell\'ovulazione</string>
+    <string name="positivoaplicacion">vai su Google Play</string>
+    <string name="negativoaplicacion">non ricordo più</string>
+    <string name="neutroaplicacion">ricordami dopo me</string>
 
 
 </resources>

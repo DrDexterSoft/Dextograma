@@ -56,6 +56,9 @@
     <string name="nomenclador_descripcion">Surgical nomenclature for CMQP specialities (Only Paraguay)</string>
     <string name="ovudex_titulo">OVUDEX</string>
     <string name="ovudex_descripcion">analysis of the regularity of the menstrual cycle and menstruation calculator</string>
+    <string name="positivoaplicacion">go to Google Play</string>
+    <string name="negativoaplicacion">Do not remember</string>
+    <string name="neutroaplicacion">remember later</string>
 
 
 </resources>
