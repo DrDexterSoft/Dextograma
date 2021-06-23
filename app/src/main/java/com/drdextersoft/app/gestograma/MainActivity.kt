@@ -86,7 +86,7 @@
          RB2.setOnClickListener {if(P_Eco.text.isNotEmpty()){calcularSemanas(P_Eco)} else {fecha(P_Eco)}}
 
         Guardar.setOnClickListener{
-            if (Guardar.isChecked==false) {
+            if (!Guardar.isChecked) {
                 grabarPreferenciastxt("fumval","")
                 grabarPreferenciastxt("pecoval","")
                 grabarPreferenciastxt("semval","")
