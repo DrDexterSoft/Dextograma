@@ -432,5 +432,6 @@ android:layout_marginLeft="10dp">
         ></TextView>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>
