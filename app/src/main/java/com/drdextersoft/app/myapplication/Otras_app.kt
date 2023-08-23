@@ -4,33 +4,42 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_otras_app.*
+import com.drdextersoft.app.myapplication.BuildConfig.*
+import com.drdextersoft.app.myapplication.databinding.ActivityAboutBinding
+import com.drdextersoft.app.myapplication.databinding.ActivityMainBinding
+import com.drdextersoft.app.myapplication.databinding.ActivityOtrasAppBinding
+
+//import kotlinx.android.synthetic.main.activity_otras_app.*
+
 
 class Otras_app : AppCompatActivity() {
+    private lateinit var binding: ActivityOtrasAppBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_otras_app)
+        binding = ActivityOtrasAppBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+ //       setContentView(R.layout.activity_otras_app)
 
         val actionBar = supportActionBar
-        actionBar!!.title = "OVUDEX" + " " + packageManager.getPackageInfo(packageName, 0).versionName
+        actionBar!!.title = "OVUDEX $VERSION_NAME"
         actionBar.elevation = 4.0F
         actionBar.setDisplayShowHomeEnabled(true)
         actionBar.setLogo(R.mipmap.ic_launcher_foreground)
         actionBar.setDisplayUseLogoEnabled(true)
 
-        cerrar.setOnClickListener { finish() }
+        binding.cerrar.setOnClickListener { finish() }
 
-        boton_dextograma.setOnClickListener{llamar_app("com.drdextersoft.app.myapplication")}
-        titulo_dextograma.setOnClickListener{llamar_app("com.drdextersoft.app.myapplication")}
-        descripcion_dextograma.setOnClickListener{llamar_app("com.drdextersoft.app.myapplication")}
+        binding.botonDextograma.setOnClickListener{llamar_app("com.drdextersoft.app.myapplication")}
+        binding.tituloDextograma.setOnClickListener{llamar_app("com.drdextersoft.app.myapplication")}
+        binding.descripcionDextograma.setOnClickListener{llamar_app("com.drdextersoft.app.myapplication")}
 
-        boton_nomenclador.setOnClickListener{llamar_app("com.dexterlabs.nomencladorspgo_cmq_cimap")}
-        titulo_nomenclador.setOnClickListener{llamar_app("com.dexterlabs.nomencladorspgo_cmq_cimap")}
-        descripcion_nomenclador.setOnClickListener{llamar_app("com.dexterlabs.nomencladorspgo_cmq_cimap")}
+        binding.botonNomenclador.setOnClickListener{llamar_app("com.dexterlabs.nomencladorspgo_cmq_cimap")}
+        binding.tituloNomenclador.setOnClickListener{llamar_app("com.dexterlabs.nomencladorspgo_cmq_cimap")}
+        binding.descripcionNomenclador.setOnClickListener{llamar_app("com.dexterlabs.nomencladorspgo_cmq_cimap")}
 
-        boton_ovudex.setOnClickListener{llamar_app("com.dexterlabs.calculodeovulacion")}
-        titulo_ovudex.setOnClickListener{llamar_app("com.dexterlabs.calculodeovulacion")}
-        descripcion_ovudex.setOnClickListener {llamar_app("com.dexterlabs.calculodeovulacion")}
+        binding.botonOvudex.setOnClickListener{llamar_app("com.dexterlabs.calculodeovulacion")}
+        binding.tituloOvudex.setOnClickListener{llamar_app("com.dexterlabs.calculodeovulacion")}
+        binding.descripcionOvudex.setOnClickListener {llamar_app("com.dexterlabs.calculodeovulacion")}
 
     }
 
