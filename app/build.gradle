@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 //apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 33
+ //   compileSdkVersion 33
 
     buildFeatures {viewBinding = true}
 
@@ -32,7 +32,7 @@ android {
         jvmTarget = '11'
     }
     namespace 'com.drdextersoft.app.myapplication'
-    buildToolsVersion '33.0.1'
+//    buildToolsVersion '33.0.1'
 }
 
 
